@@ -1,0 +1,53 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IconUtils } from '../../../core/utils/icon.utils';
+
+export interface ISidebarItem {
+	id: string;
+	icon: string;
+	label: string;
+	active: boolean;
+}
+
+export interface IUserProfile {
+	name: string;
+	email: string;
+	avatar: string;
+}
+
+@Component({
+	selector: 'app-sidebar',
+	standalone: true,
+	imports: [CommonModule],
+	templateUrl: './sidebar.component.html',
+	styleUrls: ['./sidebar.component.scss']
+})
+export class SidebarComponent {
+	@Input() items: ISidebarItem[] = [];
+	@Input() userProfile: IUserProfile | null = null;
+	@Input() collapsed: boolean = false;
+	@Input() isMobile: boolean = false;
+
+	@Output() itemClick = new EventEmitter<string>();
+	@Output() toggleSidebar = new EventEmitter<void>();
+
+	onItemClick(itemId: string): void {
+		this.itemClick.emit(itemId);
+	}
+
+	onToggleSidebar(): void {
+		this.toggleSidebar.emit();
+	}
+
+	getIconClass(icon: string): string {
+		return IconUtils.getIconClass(icon);
+	}
+
+	getSvgIcon(icon: string): string {
+		return IconUtils.getSvgIcon(icon);
+	}
+
+	isSvgIcon(icon: string): boolean {
+		return IconUtils.isSvgIcon(icon);
+	}
+} 

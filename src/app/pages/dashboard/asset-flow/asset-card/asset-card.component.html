@@ -1,0 +1,31 @@
+<div class="asset-card">
+  <div class="card-header">
+    <div class="asset-icon">
+      <img [src]="'icons/server.svg'" [alt]="assetData.name">
+      <img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
+
+    </div>
+    <div class="asset-info">
+      <h3 class="asset-name">{{ assetData.name }}</h3>
+      <p class="asset-ip">{{ assetData.ipAddress }}</p>
+    </div>
+  </div>
+  
+  <div class="card-metadata">
+    @for (meta of assetData.metadata; let first = $first; track meta.label) {
+      <div class="metadata-item">
+        @if (meta.label) {
+          <span class="meta-label">
+            @if (first) {
+              <img src="icons/receipt.svg" alt="receipt" />
+            }
+            <p>{{ meta.label }}:</p>
+          </span>
+        }
+        <span class="meta-value" [ngClass]="'highlight-' + meta.highlight">
+          {{ meta.value }}
+        </span>
+      </div>
+    }
+  </div>
+</div> 

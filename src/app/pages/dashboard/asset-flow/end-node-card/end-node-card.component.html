@@ -1,0 +1,29 @@
+<div class="end-node-card">
+  <div class="card-header">
+    <div class="asset-icon">
+      <img [src]="'icons/server.svg'" [alt]="cardData.name">
+    </div>
+    <div class="asset-info">
+      <div class="asset-name">{{ cardData.name }}</div>
+      <div class="asset-ip">{{ cardData.ipAddress }}</div>
+    </div>
+  </div>
+  
+  <div class="card-metadata">
+    @for (meta of cardData.metadata; track $index) {
+      <div class="metadata-item">
+        @if (meta.label && $index === 0) {
+          <span class="meta-label">
+            <img src="icons/receipt.svg" alt="receipt" />
+            {{ meta.label }}:
+          </span>
+        } @else {
+          <span class="meta-label">{{ meta.label }}</span>
+        }
+        <span class="meta-value" [ngClass]="meta.highlight ? 'highlight-' + meta.highlight : 'no-highlight'">
+          {{ meta.value }}
+        </span>
+      </div>
+    }
+  </div>
+</div> 

@@ -1,0 +1,45 @@
+<div class="remediation-container">
+	<div class="techniques-grid">
+		<div 
+			*ngFor="let technique of techniques" 
+			class="technique-section">
+			
+			<div class="technique-header" (click)="toggleTechnique(technique.id)">
+				<h3 class="section-title">{{ technique.name }}</h3>
+				<div class="technique-toggle" [class.expanded]="isExpanded(technique.id)">
+					<i class="fas fa-chevron-down"></i>
+				</div>
+			</div>
+
+			<div class="technique-content" [class.expanded]="isExpanded(technique.id)">
+				<!-- Asset Cards -->
+				<div 
+					*ngFor="let asset of technique.assets" 
+					class="asset-card">
+					
+					<div class="card-content">
+						<div class="server-info">
+							<app-server-image size="md" variant="default"></app-server-image>
+							<div class="server-details">
+								<div class="server-label">Server</div>
+								<div class="server-sublabel">Server</div>
+							</div>
+						</div>
+
+						<div class="content-divider"></div>
+
+						<div class="content-text">
+							<p>Lorem Ipsum Dolor Sit</p>
+							<p>Amet Consectetur.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Technique Description -->
+				<div class="technique-description">
+					<p>{{ technique.description }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 

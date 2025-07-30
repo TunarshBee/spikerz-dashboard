@@ -1,0 +1,153 @@
+$white: #ffffff;
+$blue-100: #dbeafe;
+$blue-700: #1d4ed8;
+$red: #E5372B;
+$gray-400: #858D9D;
+$gray-700: #525d73;
+$gray-900: #404a60;
+$yellow-100: #fef3c7;
+$yellow-600: #d97706;
+$purple-100: #f3e8ff;
+$purple-700: #7c3aed;
+$green-100: #dcfce7;
+$green-700: #166534;
+
+.end-node-card {
+  position: absolute;
+  bottom: -110px;
+  right: -5%;
+  transform: translateX(-5%);
+  background: $white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+width: 480px;
+  z-index: 10;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.asset-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: $blue-100;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .status-overlay {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    background: $red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid $white;
+
+    img {
+      width: 10px;
+      height: 10px;
+      filter: brightness(0) invert(1);
+    }
+  }
+}
+
+.asset-info {
+  flex: 1;
+  min-width: 0;
+
+  .asset-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: $gray-900;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .asset-ip {
+    font-size: 12px;
+    color: $gray-400;
+    line-height: 1.2;
+  }
+}
+
+.card-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  flex-wrap: wrap;
+
+  .meta-label {
+    color: $gray-700;
+    font-weight: 600;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .meta-value {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &.highlight-yellow {
+      background: $yellow-100;
+      color: $yellow-600;
+    }
+
+    &.highlight-blue {
+      background: $blue-100;
+      color: $blue-700;
+    }
+
+    &.highlight-purple {
+      background: $purple-100;
+      color: $purple-700;
+    }
+
+    &.highlight-green {
+      background: $green-100;
+      color: $green-700;
+    }
+
+    &.no-highlight {
+      color: $gray-700;
+      padding: 0;
+    }
+  }
+} 

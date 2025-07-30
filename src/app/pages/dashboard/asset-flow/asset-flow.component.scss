@@ -1,0 +1,159 @@
+$green-50: #e9faf0;
+$green-700: #02983e;
+$green-800: #00732e;
+$white: #ffffff;
+$orange: #ff9500;
+$red: #e5372b;
+$gray-25: #fafafa;
+$gray-50: #f0f1f3;
+$gray-100: #e0e2e7;
+$gray-400: #858d9d;
+$gray-500: #667085;
+$gray-700: #525d73;
+$gray-900: #404a60;
+$slate-700: #334155;
+$pink-100: #fce7f3;
+$blue-100: #dbeafe;
+
+.diagram-container {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 15px;
+  padding: 10px 16px;
+  background: $gray-25;
+}
+
+.asset-flow-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 20px 0px;
+  min-height: 200px;
+  position: relative;
+}
+
+.flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+
+  .node-icon-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .status-overlay {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: $red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid $white;
+    }
+  }
+
+  .node-label {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13.5px;
+    color: $gray-700;
+    text-align: center;
+  }
+
+  .node-ip {
+    font-weight: 500;
+    font-size: 9.45px;
+    line-height: 10.13px;
+    color: $gray-500;
+    text-align: center;
+  }
+}
+
+.flow-connection {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-width: 60px;
+
+  .connection-line {
+    width: 100%;
+    height: 2px;
+    background: $gray-700;
+    position: relative;
+  }
+
+  .connection-split {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 80px;
+
+    .split-line {
+      position: absolute;
+      width: 2px;
+      background: $gray-700;
+
+      &.top {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 40px;
+        border-radius: 0 0 0 2px;
+      }
+
+      &.bottom {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 40px;
+        border-radius: 2px 0 0 0;
+      }
+    }
+  }
+}
+
+.risk-legend {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid $gray-100;
+}
+
+.legend-item {
+  display: flex;
+  padding: 0px 12px;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  .legend-label {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 38px;
+    color: $gray-700;
+
+    &.low {
+      color: $green-700;
+    }
+    &.high {
+      color: $orange;
+    }
+    &.critical {
+      color: $red;
+    }
+  }
+}

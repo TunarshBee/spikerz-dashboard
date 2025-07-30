@@ -1,0 +1,29 @@
+// Variables
+$green-50: #e9faf0;
+$green-700: #02983e;
+$green-800: #00732e;
+$white: #ffffff;
+$gray-50: #f0f1f3;
+$gray-100:#fafafa;
+$gray-700: #525d73;
+
+// Mixins
+@mixin card-shadow {
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.card-title {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 22px;
+	letter-spacing: 1%;
+	color: $green-700;
+	margin-bottom: 12px;
+}
+
+.card-content {
+	font-size: 12px;
+	line-height: 21px;
+	letter-spacing: 1%;
+	color: $gray-700;
+}

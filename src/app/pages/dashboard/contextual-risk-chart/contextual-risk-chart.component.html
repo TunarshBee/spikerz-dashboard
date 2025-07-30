@@ -1,0 +1,51 @@
+<div class="contextual-risk-chart-container">
+  <h3 class="contextual-risk-title">Contextual Risk</h3>
+<div class="risk-summary">
+  <div class="risk-stats">
+    @for (stat of riskStats; track stat.level) {
+    <div class="risk-stat">
+      <span class="risk-count" [ngClass]="stat.color">
+        <p class="risk-count-number">{{ stat.count }}</p>
+        <p class="risk-count-level">{{ stat.level }}</p>
+      </span>
+    </div>
+    }
+  </div>
+
+  <!-- Donut Chart -->
+  <div class="chart">
+    <svg viewBox="0 0 36 36" class="donut">
+      <!-- Background Circle -->
+      <circle class="bg" cx="18" cy="18" r="15.9155" />
+
+      <!-- Rotated Group of Risk Segments -->
+      <g transform="rotate(-90 18 18)">
+        @for (segment of segments; track segment.colorClass) {
+        <circle
+          class="segment"
+          [ngClass]="segment.colorClass"
+          cx="18"
+          cy="18"
+          r="15.9155"
+          [attr.stroke-dasharray]="
+            segment.percent + ' ' + (100 - segment.percent)
+          "
+          [attr.stroke-dashoffset]="100 - segment.offset"
+        />
+        }
+      </g>
+
+      <!-- Total Text (Centered, Not Rotated) -->
+      <text
+        x="18"
+        y="20.5"
+        class="value"
+        text-anchor="middle"
+        dominant-baseline="middle"
+      >
+        {{ total }}
+      </text>
+    </svg>
+  </div>
+</div>
+</div>
