@@ -2,20 +2,21 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { AssetFlowComponent } from './asset-flow.component';
 import { DashboardService } from '../../../core/services/dashboard.service';
-import { IAssetFlowNode } from '../../../core/interfaces/asset.interface';
+import { AssetFlowNode } from '../../../core/types';
+import { NODE_TYPES, RISK_LEVELS } from '../../../core/constants/risk.constants';
 
 describe('AssetFlowComponent', () => {
 	let component: AssetFlowComponent;
 	let fixture: ComponentFixture<AssetFlowComponent>;
 	let mockDashboardService: jasmine.SpyObj<DashboardService>;
 
-	const mockAssetFlow: IAssetFlowNode[] = [
+	const mockAssetFlow: AssetFlowNode[] = [
 		{
 			id: '1',
 			name: 'Entry Node',
 			ipAddress: '192.168.1.1',
 			icon: 'server',
-			type: 'entry',
+			type: NODE_TYPES.ENTRY,
 			connections: ['2'],
 		},
 	];
@@ -55,8 +56,8 @@ describe('AssetFlowComponent', () => {
 
 	it('should have risk legend data', () => {
 		expect(component.riskLegend.length).toBe(3);
-		expect(component.riskLegend[0].status).toBe('Critical');
-		expect(component.riskLegend[1].status).toBe('High');
-		expect(component.riskLegend[2].status).toBe('Low');
+		expect(component.riskLegend[0].status).toBe(RISK_LEVELS.CRITICAL);
+		expect(component.riskLegend[1].status).toBe(RISK_LEVELS.HIGH);
+		expect(component.riskLegend[2].status).toBe(RISK_LEVELS.LOW);
 	});
 });

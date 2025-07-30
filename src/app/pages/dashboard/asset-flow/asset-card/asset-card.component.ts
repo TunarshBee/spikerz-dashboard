@@ -1,17 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-export interface IAssetCardData {
-	name: string;
-	ipAddress: string;
-	icon: string;
-	status: 'error' | 'normal';
-	metadata: Array<{
-		label: string;
-		value: string;
-		highlight: 'yellow' | 'blue' | 'purple' | 'green';
-	}>;
-}
+import { AssetCardData } from '../../../../core/types';
+import { ASSET_CARD_STATUS } from '../../../../core/constants/risk.constants';
 
 @Component({
 	selector: 'app-asset-card',
@@ -21,11 +11,11 @@ export interface IAssetCardData {
 	styleUrls: ['./asset-card.component.scss'],
 })
 export class AssetCardComponent {
-	@Input() assetData: IAssetCardData = {
+	@Input() assetData: AssetCardData = {
 		name: '',
 		ipAddress: '',
 		icon: '',
-		status: 'normal',
+		status: ASSET_CARD_STATUS.NORMAL,
 		metadata: [],
 	};
 }

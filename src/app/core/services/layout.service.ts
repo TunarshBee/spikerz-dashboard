@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { APP_CONSTANTS } from '../constants/app.constants';
 
 @Injectable({
 	providedIn: 'root',
@@ -14,7 +15,7 @@ export class LayoutService {
 	}
 
 	private checkScreenSize(): void {
-		const isMobile = window.innerWidth <= 768;
+		const isMobile = window.innerWidth <= APP_CONSTANTS.LAYOUT.MOBILE_BREAKPOINT;
 		this.isMobileSubject.next(isMobile);
 
 		if (isMobile && this.sidebarCollapsedSubject.value === false) {

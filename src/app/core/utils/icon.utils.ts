@@ -1,3 +1,5 @@
+import { RISK_LEVELS } from '../constants/risk.constants';
+
 export class IconUtils {
 	private static iconMap: { [key: string]: string } = {
 		grid: 'fas fa-th',
@@ -42,13 +44,13 @@ export class IconUtils {
 
 	static getRiskLevelColor(level: string): string {
 		switch (level) {
-			case 'Critical':
+			case RISK_LEVELS.CRITICAL:
 				return 'red';
-			case 'High':
+			case RISK_LEVELS.HIGH:
 				return 'orange';
-			case 'Medium':
+			case RISK_LEVELS.MEDIUM:
 				return 'yellow';
-			case 'Low':
+			case RISK_LEVELS.LOW:
 				return 'green';
 			default:
 				return 'gray';

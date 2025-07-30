@@ -3,13 +3,8 @@ import { of } from 'rxjs';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { LayoutService } from '../../core/services/layout.service';
-import {
-	IAsset,
-	IRiskSummary,
-	IVulnerability,
-	IAssetCard,
-	ICVE,
-} from '../../core/interfaces/asset.interface';
+import { Asset, RiskSummary, CVE } from '../../core/types';
+import { RISK_LEVELS, ASSET_STATUS } from '../../core/constants/risk.constants';
 
 describe('DashboardComponent', () => {
 	let component: DashboardComponent;
@@ -17,24 +12,24 @@ describe('DashboardComponent', () => {
 	let mockDashboardService: jasmine.SpyObj<DashboardService>;
 	let mockLayoutService: jasmine.SpyObj<LayoutService>;
 
-	const mockCVE: ICVE = {
+	const mockCVE: CVE = {
 		id: 'CVE-2024-1234',
 		description: 'Test vulnerability description',
 		extra: 'Additional details',
 	};
 
-	const mockAssets: IAsset[] = [
+	const mockAssets: Asset[] = [
 		{
 			id: '1',
 			name: 'Test Server',
 			ipAddress: '192.168.1.1',
-			riskLevel: 'Critical',
-			status: 'active',
+			riskLevel: RISK_LEVELS.CRITICAL,
+			status: ASSET_STATUS.ACTIVE,
 			icon: 'server',
 		},
 	];
 
-	const mockRiskSummary: IRiskSummary = {
+	const mockRiskSummary: RiskSummary = {
 		critical: 2,
 		high: 3,
 		medium: 1,
@@ -98,12 +93,12 @@ describe('DashboardComponent', () => {
 	});
 
 	it('should toggle vulnerability drawer state', () => {
-		const mockAsset: IAsset = {
+		const mockAsset: Asset = {
 			id: '1',
 			name: 'Test Asset',
 			ipAddress: '192.168.1.1',
-			riskLevel: 'High',
-			status: 'active',
+			riskLevel: RISK_LEVELS.HIGH,
+			status: ASSET_STATUS.ACTIVE,
 			icon: 'server',
 		};
 

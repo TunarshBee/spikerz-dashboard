@@ -1,26 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContextualRiskTableComponent } from './contextual-risk-table.component';
-import { IAsset } from '../../../core/interfaces/asset.interface';
+import { Asset } from '../../../core/types';
+import { RISK_LEVELS, ASSET_STATUS } from '../../../core/constants/risk.constants';
 
 describe('ContextualRiskTableComponent', () => {
 	let component: ContextualRiskTableComponent;
 	let fixture: ComponentFixture<ContextualRiskTableComponent>;
 
-	const mockAssets: IAsset[] = [
+	const mockAssets: Asset[] = [
 		{
 			id: '1',
 			name: 'Test Server 1',
 			ipAddress: '192.168.1.1',
-			riskLevel: 'Critical',
-			status: 'active',
+			riskLevel: RISK_LEVELS.CRITICAL,
+			status: ASSET_STATUS.ACTIVE,
 			icon: 'server',
 		},
 		{
 			id: '2',
 			name: 'Test Server 2',
 			ipAddress: '192.168.1.2',
-			riskLevel: 'High',
-			status: 'active',
+			riskLevel: RISK_LEVELS.HIGH,
+			status: ASSET_STATUS.ACTIVE,
 			icon: 'server',
 		},
 	];

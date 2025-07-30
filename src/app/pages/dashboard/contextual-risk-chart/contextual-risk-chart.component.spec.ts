@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContextualRiskChartComponent } from './contextual-risk-chart.component';
-import { IRiskSummary } from '../../../core/interfaces/asset.interface';
+import { RISK_LEVELS, RISK_COLORS } from '../../../core/constants/risk.constants';
 
 describe('ContextualRiskChartComponent', () => {
 	let component: ContextualRiskChartComponent;
@@ -31,19 +31,27 @@ describe('ContextualRiskChartComponent', () => {
 		component.ngOnInit();
 
 		expect(component.segments.length).toBe(4);
-		expect(component.segments[0].colorClass).toBe('critical');
-		expect(component.segments[1].colorClass).toBe('high');
-		expect(component.segments[2].colorClass).toBe('medium');
-		expect(component.segments[3].colorClass).toBe('low');
+		expect(component.segments[0].colorClass).toBe(RISK_COLORS.CRITICAL);
+		expect(component.segments[1].colorClass).toBe(RISK_COLORS.HIGH);
+		expect(component.segments[2].colorClass).toBe(RISK_COLORS.MEDIUM);
+		expect(component.segments[3].colorClass).toBe(RISK_COLORS.LOW);
 	});
 
 	it('should return correct risk statistics', () => {
 		const riskStats = component.riskStats;
 
 		expect(riskStats.length).toBe(4);
-		expect(riskStats[0]).toEqual({ level: 'Critical', count: 0, color: 'critical' });
-		expect(riskStats[1]).toEqual({ level: 'High', count: 0, color: 'high' });
-		expect(riskStats[2]).toEqual({ level: 'Medium', count: 0, color: 'medium' });
-		expect(riskStats[3]).toEqual({ level: 'Low', count: 0, color: 'low' });
+		expect(riskStats[0]).toEqual({
+			level: RISK_LEVELS.CRITICAL,
+			count: 0,
+			color: RISK_COLORS.CRITICAL,
+		});
+		expect(riskStats[1]).toEqual({ level: RISK_LEVELS.HIGH, count: 0, color: RISK_COLORS.HIGH });
+		expect(riskStats[2]).toEqual({
+			level: RISK_LEVELS.MEDIUM,
+			count: 0,
+			color: RISK_COLORS.MEDIUM,
+		});
+		expect(riskStats[3]).toEqual({ level: RISK_LEVELS.LOW, count: 0, color: RISK_COLORS.LOW });
 	});
 });

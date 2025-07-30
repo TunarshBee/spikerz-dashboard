@@ -2,26 +2,25 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import {
-	SidebarComponent,
-	ISidebarItem,
-	IUserProfile,
-} from '../../shared/components/sidebar/sidebar.component';
+import { SidebarComponent } from '../../shared/components/sidebar/sidebar.component';
 import { CardComponent } from '../../shared/components/ui/card/card.component';
 
 import {
-	IAsset,
-	IVulnerability,
-	IRiskSummary,
-	IAssetCard,
-	ICVE,
-} from '../../core/interfaces/asset.interface';
+	Asset,
+	Vulnerability,
+	RiskSummary,
+	AssetCard,
+	CVE,
+	SidebarItem,
+	UserProfile,
+} from '../../core/types';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { LayoutService } from '../../core/services/layout.service';
 import { RemediationComponent } from '../../shared/components/ui/remediation/remediation.component';
 import { AssetFlowComponent } from './asset-flow/asset-flow.component';
 import { ContextualRiskTableComponent } from './contextual-risk-table/contextual-risk-table.component';
 import { ContextualRiskChartComponent } from './contextual-risk-chart/contextual-risk-chart.component';
+import { APP_CONSTANTS } from '../../core/constants/app.constants';
 
 @Component({
 	selector: 'app-dashboard',
@@ -39,7 +38,7 @@ import { ContextualRiskChartComponent } from './contextual-risk-chart/contextual
 	styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-	sidebarItems: ISidebarItem[] = [
+	sidebarItems: SidebarItem[] = [
 		{ id: 'dashboard', icon: 'dashboard', label: 'Lorem', active: false },
 		{ id: 'vulnerabilities', icon: 'vulnerabilities', label: 'Lorem', active: true },
 		{ id: 'assets', icon: 'assets', label: 'Lorem', active: false },
@@ -62,27 +61,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		}));
 	}
 
-	userProfile: IUserProfile = {
+	userProfile: UserProfile = {
 		name: 'John Doe',
 		email: 'john.doe@company.com',
 		avatar: '👤',
 	};
 
-	currentCVE!: ICVE;
+	currentCVE!: CVE;
 
-	assets: IAsset[] = [];
-	riskSummary: IRiskSummary = { critical: 0, high: 0, medium: 0, low: 0, total: 0 };
-	vulnerabilities: IVulnerability[] = [];
-	assetCards: IAssetCard[] = [];
+	assets: Asset[] = [];
+	riskSummary: RiskSummary = { critical: 0, high: 0, medium: 0, low: 0, total: 0 };
+	vulnerabilities: Vulnerability[] = [];
+	assetCards: AssetCard[] = [];
 
-	currentPage = 1;
-	pageSize = 2;
-	paginatedAssets: IAsset[] = [];
+	currentPage: number = APP_CONSTANTS.PAGINATION.DEFAULT_CURRENT_PAGE;
+	pageSize: number = APP_CONSTANTS.PAGINATION.DEFAULT_PAGE_SIZE;
+	paginatedAssets: Asset[] = [];
 
 	sidebarCollapsed = false;
 	isMobile = false;
 	showVulnerabilityDrawer = false;
-	selectedAsset: IAsset | null = null;
+	selectedAsset: Asset | null = null;
 
 	private subscriptions = new Subscription();
 
@@ -106,7 +105,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.currentCVE = this.dashboardService.getCurrentCVE();
 
 		this.subscriptions.add(
-			this.dashboardService.getAssets().subscribe((data) => {
+			this.dashboardService.getAssets().subscribe((data: Asset[]) => {
 				this.assets = data;
 				this.updatePaginatedAssets();
 			}),
@@ -155,7 +154,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.layoutService.toggleSidebar();
 	}
 
-	openVulnerabilityDrawer(asset: IAsset): void {
+	openVulnerabilityDrawer(asset: Asset): void {
 		this.selectedAsset = asset;
 		this.showVulnerabilityDrawer = true;
 	}

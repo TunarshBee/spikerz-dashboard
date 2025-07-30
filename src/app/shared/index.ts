@@ -1,5 +1,4 @@
 export { SidebarComponent } from './components/sidebar/sidebar.component';
 export { CardComponent } from './components/ui/card/card.component';
-export { ServerImageComponent } from './components/ui/server-image/server-image.component';
 
-export type { ISidebarItem, IUserProfile } from './components/sidebar/sidebar.component';
+export type { SidebarItem, UserProfile, AssetCardData, EndNodeCardData } from '../core/types';

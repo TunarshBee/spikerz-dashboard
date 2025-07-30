@@ -13,24 +13,30 @@
 		</div>
 
 		<div class="chart">
-			<svg viewBox="0 0 36 36" class="donut">
-				<circle class="bg" cx="18" cy="18" r="15.9155" />
+			<svg [attr.viewBox]="'0 0 ' + chartViewBoxSize + ' ' + chartViewBoxSize" class="donut">
+				<circle class="bg" [attr.cx]="chartCenter" [attr.cy]="chartCenter" [attr.r]="chartRadius" />
 
-				<g transform="rotate(-90 18 18)">
+				<g [attr.transform]="'rotate(-90 ' + chartCenter + ' ' + chartCenter + ')'">
 					@for (segment of segments; track segment.colorClass) {
 						<circle
 							class="segment"
 							[ngClass]="segment.colorClass"
-							cx="18"
-							cy="18"
-							r="15.9155"
+							[attr.cx]="chartCenter"
+							[attr.cy]="chartCenter"
+							[attr.r]="chartRadius"
 							[attr.stroke-dasharray]="segment.percent + ' ' + (100 - segment.percent)"
 							[attr.stroke-dashoffset]="100 - segment.offset"
 						/>
 					}
 				</g>
 
-				<text x="18" y="20.5" class="value" text-anchor="middle" dominant-baseline="middle">
+				<text
+					[attr.x]="chartCenter"
+					[attr.y]="chartTextY"
+					class="value"
+					text-anchor="middle"
+					dominant-baseline="middle"
+				>
 					{{ total }}
 				</text>
 			</svg>

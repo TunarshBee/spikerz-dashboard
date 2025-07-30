@@ -1,20 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EndNodeCardComponent, IEndNodeCardData } from './end-node-card.component';
+import { EndNodeCardComponent } from './end-node-card.component';
+import { EndNodeCardData } from '../../../../core/types';
+import { ASSET_CARD_STATUS, HIGHLIGHT_COLORS } from '../../../../core/constants/risk.constants';
 
 describe('EndNodeCardComponent', () => {
 	let component: EndNodeCardComponent;
 	let fixture: ComponentFixture<EndNodeCardComponent>;
 
-	const mockCardData: IEndNodeCardData = {
+	const mockCardData: EndNodeCardData = {
 		name: 'Test End Node',
 		ipAddress: '192.168.1.100',
 		icon: 'server',
-		status: 'normal',
+		status: ASSET_CARD_STATUS.NORMAL,
 		metadata: [
 			{
 				label: 'Status',
 				value: 'Active',
-				highlight: 'green',
+				highlight: HIGHLIGHT_COLORS.GREEN,
 			},
 		],
 	};
@@ -43,6 +45,6 @@ describe('EndNodeCardComponent', () => {
 
 	it('should display metadata with correct highlighting', () => {
 		expect(component.cardData.metadata.length).toBe(1);
-		expect(component.cardData.metadata[0].highlight).toBe('green');
+		expect(component.cardData.metadata[0].highlight).toBe(HIGHLIGHT_COLORS.GREEN);
 	});
 });

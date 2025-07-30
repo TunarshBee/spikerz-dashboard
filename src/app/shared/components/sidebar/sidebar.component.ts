@@ -1,19 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconUtils } from '../../../core/utils/icon.utils';
-
-export interface ISidebarItem {
-	id: string;
-	icon: string;
-	label: string;
-	active: boolean;
-}
-
-export interface IUserProfile {
-	name: string;
-	email: string;
-	avatar: string;
-}
+import { SidebarItem, UserProfile } from '../../../core/types';
 
 @Component({
 	selector: 'app-sidebar',
@@ -23,8 +11,8 @@ export interface IUserProfile {
 	styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-	@Input() items: ISidebarItem[] = [];
-	@Input() userProfile: IUserProfile | null = null;
+	@Input() items: SidebarItem[] = [];
+	@Input() userProfile: UserProfile | null = null;
 	@Input() collapsed: boolean = false;
 	@Input() isMobile: boolean = false;
 

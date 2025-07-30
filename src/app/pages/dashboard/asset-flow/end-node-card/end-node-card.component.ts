@@ -1,17 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-export interface IEndNodeCardData {
-	name: string;
-	ipAddress: string;
-	icon: string;
-	status: 'error' | 'normal';
-	metadata: Array<{
-		label?: string;
-		value: string;
-		highlight?: 'yellow' | 'blue' | 'purple' | 'green';
-	}>;
-}
+import { EndNodeCardData } from '../../../../core/types';
+import { ASSET_CARD_STATUS } from '../../../../core/constants/risk.constants';
 
 @Component({
 	selector: 'app-end-node-card',
@@ -21,11 +11,11 @@ export interface IEndNodeCardData {
 	styleUrls: ['./end-node-card.component.scss'],
 })
 export class EndNodeCardComponent {
-	@Input() cardData: IEndNodeCardData = {
+	@Input() cardData: EndNodeCardData = {
 		name: '',
 		ipAddress: '',
 		icon: '',
-		status: 'normal',
+		status: ASSET_CARD_STATUS.NORMAL,
 		metadata: [],
 	};
 }

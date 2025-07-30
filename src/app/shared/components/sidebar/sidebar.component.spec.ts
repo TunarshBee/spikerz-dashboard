@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SidebarComponent, ISidebarItem, IUserProfile } from './sidebar.component';
+import { SidebarComponent } from './sidebar.component';
+import { SidebarItem, UserProfile } from '../../../core/types';
 
 describe('SidebarComponent', () => {
 	let component: SidebarComponent;
 	let fixture: ComponentFixture<SidebarComponent>;
 
-	const mockSidebarItems: ISidebarItem[] = [
+	const mockSidebarItems: SidebarItem[] = [
 		{ id: 'dashboard', icon: 'dashboard', label: 'Dashboard', active: true },
 		{ id: 'vulnerabilities', icon: 'vulnerabilities', label: 'Vulnerabilities', active: false },
 	];
 
-	const mockUserProfile: IUserProfile = {
+	const mockUserProfile: UserProfile = {
 		name: 'John Doe',
 		email: 'john.doe@company.com',
 		avatar: '👤',
