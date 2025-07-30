@@ -3,7 +3,6 @@
 		<h3 class="contextual-risk-table-header-item">Asset</h3>
 		<h3 class="contextual-risk-table-header-item">Contextual Risk</h3>
 	</div>
-	<!-- Asset List -->
 	<div class="asset-list">
 		@for (asset of paginatedAssets; track asset.id) {
 			<div class="asset-item">
@@ -23,7 +22,6 @@
 		}
 	</div>
 
-	<!-- Pagination -->
 	@if (assets.length > pageSize) {
 		<div class="pagination">
 			<div class="pagination-controls">

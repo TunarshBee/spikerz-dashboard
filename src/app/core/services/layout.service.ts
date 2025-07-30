@@ -17,8 +17,6 @@ export class LayoutService {
 		const isMobile = window.innerWidth <= 768;
 		this.isMobileSubject.next(isMobile);
 
-		// On mobile, sidebar should be closed by default (collapsed = true)
-		// On desktop, sidebar should be open by default (collapsed = false)
 		if (isMobile && this.sidebarCollapsedSubject.value === false) {
 			this.sidebarCollapsedSubject.next(true);
 		}

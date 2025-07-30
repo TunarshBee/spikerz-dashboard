@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RemediationComponent } from './remediation.component';
 
 describe('RemediationComponent', () => {
@@ -13,10 +12,22 @@ describe('RemediationComponent', () => {
 
 		fixture = TestBed.createComponent(RemediationComponent);
 		component = fixture.componentInstance;
-		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it('should create component', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('should have showRemediation signal', () => {
+		expect(component.showRemediation).toBeDefined();
+		expect(component.showRemediation()).toBeFalse();
+	});
+
+	it('should toggle remediation visibility', () => {
+		expect(component.showRemediation()).toBeFalse();
+
+		component.toggleRemediation();
+
+		expect(component.showRemediation()).toBeTrue();
 	});
 });

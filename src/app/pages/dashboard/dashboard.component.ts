@@ -22,7 +22,6 @@ import { RemediationComponent } from '../../shared/components/ui/remediation/rem
 import { AssetFlowComponent } from './asset-flow/asset-flow.component';
 import { ContextualRiskTableComponent } from './contextual-risk-table/contextual-risk-table.component';
 import { ContextualRiskChartComponent } from './contextual-risk-chart/contextual-risk-chart.component';
-import { IconUtils } from '../../core/utils/icon.utils';
 
 @Component({
 	selector: 'app-dashboard',
@@ -69,7 +68,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		avatar: '👤',
 	};
 
-	// Dashboard data
 	currentCVE!: ICVE;
 
 	assets: IAsset[] = [];
@@ -77,26 +75,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	vulnerabilities: IVulnerability[] = [];
 	assetCards: IAssetCard[] = [];
 
-	// Pagination state
 	currentPage = 1;
 	pageSize = 2;
 	paginatedAssets: IAsset[] = [];
 
-	// UI state
 	sidebarCollapsed = false;
 	isMobile = false;
 	showVulnerabilityDrawer = false;
 	selectedAsset: IAsset | null = null;
 
-	// Subscriptions
 	private subscriptions = new Subscription();
 
 	constructor(
 		private dashboardService: DashboardService,
 		private layoutService: LayoutService,
-	) {
-		// Initialize mobile state immediately
-	}
+	) {}
 
 	ngOnInit(): void {
 		this.isMobile = this.layoutService.getIsMobileValue();
@@ -110,10 +103,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	}
 
 	private loadData(): void {
-		// Load current CVE
 		this.currentCVE = this.dashboardService.getCurrentCVE();
 
-		// Load assets
 		this.subscriptions.add(
 			this.dashboardService.getAssets().subscribe((data) => {
 				this.assets = data;
@@ -121,21 +112,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
 			}),
 		);
 
-		// Load risk summary
 		this.subscriptions.add(
 			this.dashboardService.getRiskSummary().subscribe((data) => {
 				this.riskSummary = data;
 			}),
 		);
 
-		// Load vulnerabilities
 		this.subscriptions.add(
 			this.dashboardService.getVulnerabilities().subscribe((data) => {
 				this.vulnerabilities = data;
 			}),
 		);
 
-		// Load asset cards
 		this.subscriptions.add(
 			this.dashboardService.getAssetCards().subscribe((data) => {
 				this.assetCards = data;
@@ -144,14 +132,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	}
 
 	private setupLayoutSubscriptions(): void {
-		// Subscribe to sidebar state
 		this.subscriptions.add(
 			this.layoutService.getSidebarCollapsed().subscribe((collapsed) => {
 				this.sidebarCollapsed = collapsed;
 			}),
 		);
 
-		// Subscribe to mobile state
 		this.subscriptions.add(
 			this.layoutService.isMobile().subscribe((isMobile) => {
 				this.isMobile = isMobile;
@@ -159,7 +145,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		);
 	}
 
-	// Event handlers
 	onSidebarItemClick(itemId: string): void {
 		this.sidebarItems.forEach((item) => {
 			item.active = item.id === itemId;
@@ -180,7 +165,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.selectedAsset = null;
 	}
 
-	// Pagination methods
 	updatePaginatedAssets(): void {
 		const startIndex = (this.currentPage - 1) * this.pageSize;
 		const endIndex = startIndex + this.pageSize;
@@ -190,23 +174,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	onPageChange(page: number): void {
 		this.currentPage = page;
 		this.updatePaginatedAssets();
-	}
-
-	getTotalPages(): number {
-		return Math.ceil(this.assets.length / this.pageSize);
-	}
-
-	getPageInfo(): string {
-		const start = (this.currentPage - 1) * this.pageSize + 1;
-		const end = Math.min(this.currentPage * this.pageSize, this.assets.length);
-		return `Showing ${start}-${end} of ${this.assets.length}`;
-	}
-
-	getIconClass(icon: string): string {
-		return IconUtils.getIconClass(icon);
-	}
-
-	getRiskLevelColor(level: string): string {
-		return IconUtils.getRiskLevelColor(level);
 	}
 }

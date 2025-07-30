@@ -78,10 +78,8 @@
 			</div>
 
 			<div class="right-column">
-				<!-- Asset Flow Diagram -->
 				<app-asset-flow></app-asset-flow>
 
-				<!-- Contextual Risk Table -->
 				<app-card title="Lorem ipsum dolor sit">
 					<div class="contextual-risk-container">
 						<app-contextual-risk-table
@@ -90,8 +88,6 @@
 							[pageSize]="pageSize"
 							(pageChange)="onPageChange($event)"
 						></app-contextual-risk-table>
-
-						<!-- Contextual Risk Chart -->
 						<app-contextual-risk-chart [riskSummary]="riskSummary"></app-contextual-risk-chart>
 					</div>
 				</app-card>

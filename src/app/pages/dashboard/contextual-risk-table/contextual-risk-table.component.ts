@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IAsset } from '../../../core/interfaces/asset.interface';
-import { IconUtils } from '../../../core/utils/icon.utils';
 
 @Component({
 	selector: 'app-contextual-risk-table',
@@ -34,13 +33,5 @@ export class ContextualRiskTableComponent {
 
 	onPageChange(page: number): void {
 		this.pageChange.emit(page);
-	}
-
-	getIconClass(icon: string): string {
-		return IconUtils.getIconClass(icon);
-	}
-
-	getRiskLevelColor(level: string): string {
-		return IconUtils.getRiskLevelColor(level);
 	}
 }

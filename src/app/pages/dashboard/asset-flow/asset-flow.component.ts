@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { IconUtils } from '../../../core/utils/icon.utils';
+
 import { CardComponent } from '../../../shared/components/ui/card/card.component';
 import {
 	IAsset,
@@ -41,7 +41,6 @@ export class AssetFlowComponent implements OnInit, OnDestroy {
 	hoveredMiddleNode: string | null = null;
 	hoveredEndNode: string | null = null;
 
-	// Sample asset data for middle nodes
 	middleNodeAssets: { [key: string]: IAssetCardData } = {
 		'2': {
 			name: 'WebServer-Prod-01',
@@ -65,7 +64,6 @@ export class AssetFlowComponent implements OnInit, OnDestroy {
 		},
 	};
 
-	// Sample asset data for end nodes
 	endNodeAssets: { [key: string]: IEndNodeCardData } = {
 		'4': {
 			name: 'Loremipsum',
@@ -130,56 +128,22 @@ export class AssetFlowComponent implements OnInit, OnDestroy {
 		this.subscriptions.unsubscribe();
 	}
 	private loadData(): void {
-		// Load current CVE
-
-		// Load asset flow
 		this.subscriptions.add(
 			this.dashboardService.getAssetFlow().subscribe((data) => {
 				this.assetFlow.set(data);
 			}),
 		);
 
-		// Load vulnerabilities
 		this.subscriptions.add(
 			this.dashboardService.getVulnerabilities().subscribe((data) => {
 				this.vulnerabilities.set(data);
 			}),
 		);
 
-		// Load asset cards
 		this.subscriptions.add(
 			this.dashboardService.getAssetCards().subscribe((data) => {
 				this.assetCards.set(data);
 			}),
 		);
-	}
-	getIconClass(icon: string): string {
-		return IconUtils.getIconClass(icon);
-	}
-
-	getRiskLevelColor(level: string): string {
-		return IconUtils.getRiskLevelColor(level);
-	}
-
-	getNodeIconClass(node: IAssetFlowNode): string {
-		if (node.type === 'entry') {
-			return 'entry-node';
-		} else if (node.type === 'end') {
-			return 'end-node';
-		}
-		return 'middle-node';
-	}
-
-	getStatusIcon(riskLevel: string): string {
-		switch (riskLevel) {
-			case 'Critical':
-				return 'error-shield.svg';
-			case 'High':
-				return 'warning-shield.svg';
-			case 'Medium':
-				return 'warning-shield.svg';
-			default:
-				return 'success-shield.svg';
-		}
 	}
 }

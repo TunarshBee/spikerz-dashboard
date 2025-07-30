@@ -39,10 +39,6 @@ export class SidebarComponent {
 		this.toggleSidebar.emit();
 	}
 
-	getIconClass(icon: string): string {
-		return IconUtils.getIconClass(icon);
-	}
-
 	getSvgIcon(icon: string): string {
 		return IconUtils.getSvgIcon(icon);
 	}
