@@ -1,4 +1,3 @@
-// Asset Types
 export type Asset = {
 	id: string;
 	name: string;
@@ -61,7 +60,6 @@ export type CVE = {
 	extra: string;
 };
 
-// Sidebar Types
 export type SidebarItem = {
 	id: string;
 	icon: string;
@@ -75,7 +73,6 @@ export type UserProfile = {
 	avatar: string;
 };
 
-// Component-specific Types
 export type AssetCardData = {
 	name: string;
 	ipAddress: string;
@@ -100,7 +97,6 @@ export type EndNodeCardData = {
 	}>;
 };
 
-// Union Types
 export type RiskLevel = 'Critical' | 'High' | 'Medium' | 'Low';
 export type AssetStatus = 'active' | 'inactive';
 export type NodeType = 'entry' | 'middle' | 'end';

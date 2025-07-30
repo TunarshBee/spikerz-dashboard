@@ -1,39 +1,49 @@
-// Design System Colors
-$primary-color: #02983e;
-$green-50: #e9faf0;
-$green-700: #02983e;
-$green-800: #00732e;
-$white: #ffffff;
-$gray-25: #fafafa;
-$gray-50: #f0f1f3;
-$gray-100: #e0e2e7;
-$gray-200: #cbd5e1;
-$gray-400: #858d9d;
-$gray-500: #667085;
-$gray-600: #4b5563;
-$gray-700: #525d73;
-$gray-800: #1f2937;
-$gray-900: #404a60;
-$slate-700: #334155;
+:root {
+	--primary-color: #02983e;
+	--green-50: #e9faf0;
+	--green-700: #02983e;
+	--green-800: #00732e;
+	--white: #ffffff;
+	--gray-25: #fafafa;
+	--gray-50: #f0f1f3;
+	--gray-100: #e0e2e7;
+	--gray-200: #cbd5e1;
+	--gray-400: #858d9d;
+	--gray-500: #667085;
+	--gray-600: #4b5563;
+	--gray-700: #525d73;
+	--gray-800: #1f2937;
+	--gray-900: #404a60;
+	--slate-700: #334155;
 
-// Risk Level Colors
-$orange: #ff9500;
-$red: #e5372b;
-$critical-red: #ef4444;
-$warning-orange: #f97316;
-$success-green: #22c55e;
+	--orange: #ff9500;
+	--red: #e5372b;
+	--critical-red: #ef4444;
+	--warning-orange: #f97316;
+	--success-green: #22c55e;
 
-// Highlight Colors
-$highlight-yellow-bg: #fef3c7;
-$highlight-yellow-text: #92400e;
-$highlight-blue-bg: #dbeafe;
-$highlight-blue-text: #1e40af;
-$highlight-purple-bg: #e9d5ff;
-$highlight-purple-text: #7c3aed;
-$highlight-green-bg: #dcfce7;
-$highlight-green-text: #166534;
+	--highlight-yellow-bg: #fef3c7;
+	--highlight-yellow-text: #92400e;
+	--highlight-blue-bg: #dbeafe;
+	--highlight-blue-text: #1e40af;
+	--highlight-purple-bg: #e9d5ff;
+	--highlight-purple-text: #7c3aed;
+	--highlight-green-bg: #dcfce7;
+	--highlight-green-text: #166534;
 
-// Mixins
+	--blue-100: #dbeafe;
+	--blue-700: #1d4ed8;
+	--yellow-100: #fef3c7;
+	--yellow-600: #d97706;
+	--purple-100: #f3e8ff;
+	--purple-700: #7c3aed;
+	--green-100: #dcfce7;
+	--pink-100: #fce7f3;
+	--purple-700-alt: #5f27cd;
+
+	--card-shadow: 0px 1px 3px 0px #0000000d;
+}
+
 @mixin flex-center {
 	display: flex;
 	align-items: center;
@@ -62,7 +72,6 @@ $highlight-green-text: #166534;
 	}
 }
 
-// Common Styles
 @mixin card-shadow {
 	box-shadow: 0px 1px 3px 0px #0000000d;
 }

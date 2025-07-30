@@ -1,23 +1,9 @@
-$white: #ffffff;
-$blue-100: #dbeafe;
-$blue-700: #1d4ed8;
-$red: #e5372b;
-$gray-400: #858d9d;
-$gray-700: #525d73;
-$gray-900: #404a60;
-$yellow-100: #fef3c7;
-$yellow-600: #d97706;
-$purple-100: #f3e8ff;
-$purple-700: #7c3aed;
-$green-100: #dcfce7;
-$green-700: #166534;
-
 .end-node-card {
 	position: absolute;
 	bottom: -110px;
 	right: -5%;
 	transform: translateX(-5%);
-	background: $white;
+	background: var(--white);
 	border-radius: 12px;
 	padding: 16px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -36,7 +22,7 @@ $green-700: #166534;
 	position: relative;
 	width: 40px;
 	height: 40px;
-	background: $blue-100;
+	background: var(--blue-100);
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
@@ -55,12 +41,12 @@ $green-700: #166534;
 		right: -4px;
 		width: 20px;
 		height: 20px;
-		background: $red;
+		background: var(--red);
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border: 2px solid $white;
+		border: 2px solid var(--white);
 
 		img {
 			width: 10px;
@@ -77,14 +63,14 @@ $green-700: #166534;
 	.asset-name {
 		font-size: 14px;
 		font-weight: 600;
-		color: $gray-900;
+		color: var(--gray-900);
 		line-height: 1.2;
 		margin-bottom: 4px;
 	}
 
 	.asset-ip {
 		font-size: 12px;
-		color: $gray-400;
+		color: var(--gray-400);
 		line-height: 1.2;
 	}
 }
@@ -104,7 +90,7 @@ $green-700: #166534;
 	flex-wrap: wrap;
 
 	.meta-label {
-		color: $gray-700;
+		color: var(--gray-700);
 		font-weight: 600;
 		white-space: nowrap;
 		display: flex;
@@ -126,27 +112,27 @@ $green-700: #166534;
 		gap: 10px;
 
 		&.highlight-yellow {
-			background: $yellow-100;
-			color: $yellow-600;
+			background: var(--yellow-100);
+			color: var(--yellow-600);
 		}
 
 		&.highlight-blue {
-			background: $blue-100;
-			color: $blue-700;
+			background: var(--blue-100);
+			color: var(--blue-700);
 		}
 
 		&.highlight-purple {
-			background: $purple-100;
-			color: $purple-700;
+			background: var(--purple-100);
+			color: var(--purple-700);
 		}
 
 		&.highlight-green {
-			background: $green-100;
-			color: $green-700;
+			background: var(--green-100);
+			color: var(--green-700);
 		}
 
 		&.no-highlight {
-			color: $gray-700;
+			color: var(--gray-700);
 			padding: 0;
 		}
 	}

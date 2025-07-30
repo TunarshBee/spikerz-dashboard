@@ -1,42 +1,29 @@
-// Theme Variables
-$green-50: #e9faf0;
-$green-700: #02983e;
-$green-800: #00732e;
-$white: #ffffff;
-$orange: #ff9500;
-$red: #e5372b;
-$gray-25: #fafafa;
-$gray-50: #f0f1f3;
-$gray-100: #e0e2e7;
-$gray-400: #858d9d;
-$gray-500: #667085;
-$gray-700: #525d73;
-$gray-900: #404a60;
-$slate-700: #334155;
-
 .contextual-risk-chart-container {
-	width: 100%;
-	border-radius: 20px;
-	border: 1.1px solid $gray-100;
-	padding: 10px 20px;
 	display: flex;
 	flex-direction: column;
+	align-items: start;
 	gap: 15px;
+	padding: 10px 30px;
+	background-color: var(--white);
+	border-radius: 12px;
+	box-shadow: var(--card-shadow);
+	border: 1px solid var(--gray-100);
+}
 
-	.contextual-risk-title {
-		font-size: 18px;
-		font-weight: 500;
-		line-height: 28px;
-		color: $gray-500;
-	}
+.contextual-risk-title {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 28px;
+	text-align: start;
+	color: var(--gray-500);
 }
 
 .risk-summary {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
-	gap: 38px;
+	align-items: start;
+	gap: 20px;
 }
 
 .risk-stats {
@@ -77,19 +64,19 @@ $slate-700: #334155;
 		}
 
 		&.critical::before {
-			background: $red;
+			background: var(--red);
 		}
 
 		&.high::before {
-			background: $red;
+			background: var(--red);
 		}
 
 		&.medium::before {
-			background: $orange;
+			background: var(--orange);
 		}
 
 		&.low::before {
-			background: $green-700;
+			background: var(--green-700);
 		}
 	}
 }
@@ -112,24 +99,24 @@ $slate-700: #334155;
 		}
 
 		.bg {
-			stroke: $gray-100;
+			stroke: var(--gray-100);
 		}
 
 		.segment {
 			&.critical {
-				stroke: $red;
+				stroke: var(--red);
 			}
 
 			&.high {
-				stroke: $orange; // Adjust if you want different color than critical
+				stroke: var(--orange);
 			}
 
 			&.medium {
-				stroke: #ffc107; // Or use another orange/yellow tone
+				stroke: var(--orange);
 			}
 
 			&.low {
-				stroke: $green-700;
+				stroke: var(--green-700);
 			}
 		}
 
@@ -137,7 +124,7 @@ $slate-700: #334155;
 			font-weight: 600;
 			font-size: 12px;
 			text-align: center;
-			fill: $gray-700;
+			fill: var(--gray-700);
 			text-anchor: middle;
 			dominant-baseline: middle;
 		}

@@ -1,6 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RiskSummary } from '../../../core/types';
+import { Asset, RiskSummary } from '../../../core/types';
 import { APP_CONSTANTS } from '../../../core/constants/app.constants';
 import { RISK_LEVELS, RISK_COLORS } from '../../../core/constants/risk.constants';
 
@@ -11,14 +11,8 @@ import { RISK_LEVELS, RISK_COLORS } from '../../../core/constants/risk.constants
 	templateUrl: './contextual-risk-chart.component.html',
 	styleUrls: ['./contextual-risk-chart.component.scss'],
 })
-export class ContextualRiskChartComponent {
-	riskSummary = input<RiskSummary>({
-		critical: 0,
-		high: 0,
-		medium: 0,
-		low: 0,
-		total: 0,
-	});
+export class ContextualRiskChartComponent implements OnInit {
+	assets = input<Asset[]>([]);
 
 	total = 0;
 	segments: { percent: number; offset: number; colorClass: string }[] = [];
@@ -29,17 +23,51 @@ export class ContextualRiskChartComponent {
 	chartTextY = APP_CONSTANTS.CHART.TEXT_Y_OFFSET;
 
 	ngOnInit(): void {
-		const data = this.riskSummary();
-		this.total = this.getTotal();
+		this.calculateRiskSummary();
+	}
 
+	private calculateRiskSummary(): void {
+		const assets = this.assets();
+		const riskSummary: RiskSummary = {
+			critical: 0,
+			high: 0,
+			medium: 0,
+			low: 0,
+			total: assets.length,
+		};
+
+		// Count assets by risk level
+		assets.forEach((asset) => {
+			const riskLevel = asset.riskLevel.toLowerCase();
+			switch (riskLevel) {
+				case 'critical':
+					riskSummary.critical++;
+					break;
+				case 'high':
+					riskSummary.high++;
+					break;
+				case 'medium':
+					riskSummary.medium++;
+					break;
+				case 'low':
+					riskSummary.low++;
+					break;
+			}
+		});
+
+		this.total = riskSummary.total;
+		this.calculateSegments(riskSummary);
+	}
+
+	private calculateSegments(riskSummary: RiskSummary): void {
 		let offset = 0;
 		this.segments = [];
 
 		const parts = [
-			{ value: data.critical, class: RISK_COLORS.CRITICAL },
-			{ value: data.high, class: RISK_COLORS.HIGH },
-			{ value: data.medium, class: RISK_COLORS.MEDIUM },
-			{ value: data.low, class: RISK_COLORS.LOW },
+			{ value: riskSummary.critical, class: RISK_COLORS.CRITICAL },
+			{ value: riskSummary.high, class: RISK_COLORS.HIGH },
+			{ value: riskSummary.medium, class: RISK_COLORS.MEDIUM },
+			{ value: riskSummary.low, class: RISK_COLORS.LOW },
 		];
 
 		for (const part of parts) {
@@ -54,20 +82,44 @@ export class ContextualRiskChartComponent {
 		}
 	}
 
-	getTotal(): number {
-		const data = this.riskSummary();
-		return data?.critical + data?.high + data?.medium + data?.low || 0;
-	}
 	get riskStats() {
+		const assets = this.assets();
+		const riskSummary: RiskSummary = {
+			critical: 0,
+			high: 0,
+			medium: 0,
+			low: 0,
+			total: assets.length,
+		};
+
+		// Count assets by risk level
+		assets.forEach((asset) => {
+			const riskLevel = asset.riskLevel.toLowerCase();
+			switch (riskLevel) {
+				case 'critical':
+					riskSummary.critical++;
+					break;
+				case 'high':
+					riskSummary.high++;
+					break;
+				case 'medium':
+					riskSummary.medium++;
+					break;
+				case 'low':
+					riskSummary.low++;
+					break;
+			}
+		});
+
 		return [
 			{
 				level: RISK_LEVELS.CRITICAL,
-				count: this.riskSummary()?.critical,
+				count: riskSummary.critical,
 				color: RISK_COLORS.CRITICAL,
 			},
-			{ level: RISK_LEVELS.HIGH, count: this.riskSummary()?.high, color: RISK_COLORS.HIGH },
-			{ level: RISK_LEVELS.MEDIUM, count: this.riskSummary()?.medium, color: RISK_COLORS.MEDIUM },
-			{ level: RISK_LEVELS.LOW, count: this.riskSummary()?.low, color: RISK_COLORS.LOW },
+			{ level: RISK_LEVELS.HIGH, count: riskSummary.high, color: RISK_COLORS.HIGH },
+			{ level: RISK_LEVELS.MEDIUM, count: riskSummary.medium, color: RISK_COLORS.MEDIUM },
+			{ level: RISK_LEVELS.LOW, count: riskSummary.low, color: RISK_COLORS.LOW },
 		];
 	}
 }

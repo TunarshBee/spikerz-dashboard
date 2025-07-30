@@ -1,14 +1,3 @@
-// Variables
-$green-50: #e9faf0;
-$green-700: #02983e;
-$green-800: #00732e;
-$white: #ffffff;
-$gray-25: #fafafa;
-$gray-50: #f0f1f3;
-$gray-100: #fafafa;
-$gray-700: #525d73;
-
-// Mixins
 @mixin flex-center {
 	display: flex;
 	align-items: center;
@@ -37,10 +26,9 @@ $gray-700: #525d73;
 	}
 }
 
-// Sidebar Styles
 .sidebar {
-	width: 280px;
-	background-color: $white;
+	width: 250px;
+	background-color: var(--white);
 	box-shadow: 0px 16px 18px 0px #0000000f;
 	border-radius: 12px;
 	display: flex;
@@ -49,7 +37,7 @@ $gray-700: #525d73;
 	position: relative;
 	padding: 28px 16px;
 	z-index: 10;
-	height: 100vh; // Full height on all screen sizes
+	height: 100vh;
 
 	@include responsive(mobile) {
 		position: fixed;
@@ -77,9 +65,9 @@ $gray-700: #525d73;
 	right: -16px;
 	width: 32px;
 	height: 32px;
-	border: 3px solid $gray-50;
-	background-color: $green-700;
-	color: $white;
+	border: 3px solid var(--gray-50);
+	background-color: var(--green-700);
+	color: var(--white);
 	border-radius: 50px;
 	box-shadow: 0px 1px 4px 0px #0c0c0d0d;
 	cursor: pointer;
@@ -87,12 +75,12 @@ $gray-700: #525d73;
 	transition: background-color 0.2s ease;
 
 	&:hover {
-		background-color: $green-700;
+		background-color: var(--green-700);
 	}
 
 	i {
 		font-size: 14px;
-		color: $white;
+		color: var(--white);
 	}
 }
 
@@ -129,15 +117,15 @@ $gray-700: #525d73;
 	transition: all 0.2s ease;
 	border-radius: 8px;
 	text-align: left;
-	color: $gray-700;
+	color: var(--gray-700);
 	font-weight: 400;
 	font-size: 15px;
 	line-height: 22px;
 	letter-spacing: 1%;
 
 	&:hover {
-		background-color: $gray-100;
-		color: $gray-700;
+		background-color: var(--gray-100);
+		color: var(--gray-700);
 
 		.svg-icon {
 			filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg)
@@ -146,8 +134,8 @@ $gray-700: #525d73;
 	}
 
 	&.active {
-		background-color: $green-50;
-		color: $gray-700;
+		background-color: var(--green-50);
+		color: var(--gray-700);
 
 		.svg-icon {
 			filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg)
@@ -175,7 +163,7 @@ $gray-700: #525d73;
 
 .sidebar-footer {
 	padding: 20px 0;
-	border-top: 1px solid $gray-100;
+	border-top: 1px solid var(--gray-100);
 }
 
 .user-profile {
@@ -186,7 +174,7 @@ $gray-700: #525d73;
 .user-avatar {
 	width: 40px;
 	height: 40px;
-	background-color: $gray-100;
+	background-color: var(--gray-100);
 	border-radius: 50%;
 	@include flex-center;
 	font-size: 18px;
@@ -202,12 +190,12 @@ $gray-700: #525d73;
 	font-size: 15px;
 	line-height: 22px;
 	letter-spacing: 1%;
-	color: $gray-700;
+	color: var(--gray-700);
 }
 
 .user-email {
 	font-size: 12px;
-	color: $gray-700;
+	color: var(--gray-700);
 }
 
 .user-menu-toggle {
@@ -215,14 +203,14 @@ $gray-700: #525d73;
 	height: 32px;
 	border: none;
 	background: none;
-	color: $gray-100;
+	color: var(--gray-100);
 	cursor: pointer;
 	@include flex-center;
 	border-radius: 4px;
 	transition: background-color 0.2s ease;
 
 	&:hover {
-		background-color: $gray-100;
-		color: $gray-700;
+		background-color: var(--gray-100);
+		color: var(--gray-700);
 	}
 }

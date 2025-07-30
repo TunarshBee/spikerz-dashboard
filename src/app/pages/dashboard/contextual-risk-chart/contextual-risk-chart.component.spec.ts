@@ -1,10 +1,46 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContextualRiskChartComponent } from './contextual-risk-chart.component';
 import { RISK_LEVELS, RISK_COLORS } from '../../../core/constants/risk.constants';
+import { Asset } from '../../../core/types';
 
 describe('ContextualRiskChartComponent', () => {
 	let component: ContextualRiskChartComponent;
 	let fixture: ComponentFixture<ContextualRiskChartComponent>;
+
+	const mockAssets: Asset[] = [
+		{
+			id: '1',
+			name: 'Server 1',
+			ipAddress: '192.168.1.1',
+			icon: 'server',
+			riskLevel: 'Critical',
+			status: 'active',
+		},
+		{
+			id: '2',
+			name: 'Server 2',
+			ipAddress: '192.168.1.2',
+			icon: 'server',
+			riskLevel: 'High',
+			status: 'active',
+		},
+		{
+			id: '3',
+			name: 'Server 3',
+			ipAddress: '192.168.1.3',
+			icon: 'server',
+			riskLevel: 'Medium',
+			status: 'active',
+		},
+		{
+			id: '4',
+			name: 'Server 4',
+			ipAddress: '192.168.1.4',
+			icon: 'server',
+			riskLevel: 'Low',
+			status: 'active',
+		},
+	];
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -16,42 +52,66 @@ describe('ContextualRiskChartComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create and initialize with default risk summary data', () => {
+	it('should create and initialize with default assets data', () => {
 		expect(component).toBeTruthy();
-		expect(component.riskSummary()).toEqual({
-			critical: 0,
-			high: 0,
-			medium: 0,
-			low: 0,
-			total: 0,
-		});
+		expect(component.assets()).toEqual([]);
 	});
 
-	it('should calculate segments correctly based on risk data', () => {
-		component.ngOnInit();
+	it('should calculate segments correctly based on assets data', () => {
+		// Set mock assets data by creating a new component instance
+		const testFixture = TestBed.createComponent(ContextualRiskChartComponent);
+		const testComponent = testFixture.componentInstance;
 
-		expect(component.segments.length).toBe(4);
-		expect(component.segments[0].colorClass).toBe(RISK_COLORS.CRITICAL);
-		expect(component.segments[1].colorClass).toBe(RISK_COLORS.HIGH);
-		expect(component.segments[2].colorClass).toBe(RISK_COLORS.MEDIUM);
-		expect(component.segments[3].colorClass).toBe(RISK_COLORS.LOW);
+		// Manually set the input signal value for testing
+		(testComponent as any).assets = () => mockAssets;
+
+		testComponent.ngOnInit();
+
+		expect(testComponent.segments.length).toBe(4);
+		expect(testComponent.segments[0].colorClass).toBe(RISK_COLORS.CRITICAL);
+		expect(testComponent.segments[1].colorClass).toBe(RISK_COLORS.HIGH);
+		expect(testComponent.segments[2].colorClass).toBe(RISK_COLORS.MEDIUM);
+		expect(testComponent.segments[3].colorClass).toBe(RISK_COLORS.LOW);
+		expect(testComponent.total).toBe(4);
 	});
 
-	it('should return correct risk statistics', () => {
-		const riskStats = component.riskStats;
+	it('should return correct risk statistics from assets data', () => {
+		// Set mock assets data by creating a new component instance
+		const testFixture = TestBed.createComponent(ContextualRiskChartComponent);
+		const testComponent = testFixture.componentInstance;
+
+		// Manually set the input signal value for testing
+		(testComponent as any).assets = () => mockAssets;
+
+		const riskStats = testComponent.riskStats;
 
 		expect(riskStats.length).toBe(4);
 		expect(riskStats[0]).toEqual({
 			level: RISK_LEVELS.CRITICAL,
-			count: 0,
+			count: 1,
 			color: RISK_COLORS.CRITICAL,
 		});
-		expect(riskStats[1]).toEqual({ level: RISK_LEVELS.HIGH, count: 0, color: RISK_COLORS.HIGH });
+		expect(riskStats[1]).toEqual({ level: RISK_LEVELS.HIGH, count: 1, color: RISK_COLORS.HIGH });
 		expect(riskStats[2]).toEqual({
 			level: RISK_LEVELS.MEDIUM,
-			count: 0,
+			count: 1,
 			color: RISK_COLORS.MEDIUM,
 		});
-		expect(riskStats[3]).toEqual({ level: RISK_LEVELS.LOW, count: 0, color: RISK_COLORS.LOW });
+		expect(riskStats[3]).toEqual({ level: RISK_LEVELS.LOW, count: 1, color: RISK_COLORS.LOW });
+	});
+
+	it('should handle empty assets array', () => {
+		// Set empty assets data by creating a new component instance
+		const testFixture = TestBed.createComponent(ContextualRiskChartComponent);
+		const testComponent = testFixture.componentInstance;
+
+		// Manually set the input signal value for testing
+		(testComponent as any).assets = () => [];
+
+		testComponent.ngOnInit();
+
+		expect(testComponent.total).toBe(0);
+		expect(testComponent.segments.length).toBe(4);
+		expect(testComponent.segments.every((segment) => segment.percent === 0)).toBe(true);
 	});
 });
