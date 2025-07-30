@@ -15,129 +15,131 @@ $gray-900: #404a60;
 $slate-700: #334155;
 
 .contextual-risk-chart-container {
-  width: 100%;
-  border-radius: 20px;
-  border: 1.1px solid $gray-100;
-  padding: 10px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+	width: 100%;
+	border-radius: 20px;
+	border: 1.1px solid $gray-100;
+	padding: 10px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
 
-  .contextual-risk-title {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 28px;
-    color: $gray-500;
-  }
+	.contextual-risk-title {
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 28px;
+		color: $gray-500;
+	}
 }
 
 .risk-summary {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 38px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 38px;
 }
 
 .risk-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	flex: 1;
 }
 
 .risk-stat {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 
-  .risk-count {
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 100%;
-    text-transform: capitalize;
+	.risk-count {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 100%;
+		text-transform: capitalize;
 
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    gap: 8px;
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+		gap: 8px;
 
-    .risk-count-number {
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 100%;
-    }
+		.risk-count-number {
+			font-size: 15px;
+			font-weight: 700;
+			line-height: 100%;
+		}
 
-    &::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
+		&::before {
+			content: '';
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			display: inline-block;
+		}
 
-    &.critical::before {
-        background: $red;
-      }
+		&.critical::before {
+			background: $red;
+		}
 
-    &.high::before {
-        background: $red;
-      }
+		&.high::before {
+			background: $red;
+		}
 
-    &.medium::before {
-        background: $orange;
-      }
+		&.medium::before {
+			background: $orange;
+		}
 
-    &.low::before {
-        background: $green-700;
-      }
-  }
+		&.low::before {
+			background: $green-700;
+		}
+	}
 }
 
 .chart {
-  width: 150px;
-  height: 150px;
+	width: 150px;
+	height: 150px;
 
-  .donut {
-    width: 100%;
-    height: 100%;
+	.donut {
+		width: 100%;
+		height: 100%;
 
-    circle {
-      fill: none;
-      stroke-width: 2.8;
-      stroke-linecap: butt;
-      transition: stroke-dasharray 0.6s ease, stroke-dashoffset 0.6s ease;
-    }
+		circle {
+			fill: none;
+			stroke-width: 2.8;
+			stroke-linecap: butt;
+			transition:
+				stroke-dasharray 0.6s ease,
+				stroke-dashoffset 0.6s ease;
+		}
 
-    .bg {
-      stroke: $gray-100;
-    }
+		.bg {
+			stroke: $gray-100;
+		}
 
-    .segment {
-      &.critical {
-        stroke: $red;
-      }
+		.segment {
+			&.critical {
+				stroke: $red;
+			}
 
-      &.high {
-        stroke: $orange; // Adjust if you want different color than critical
-      }
+			&.high {
+				stroke: $orange; // Adjust if you want different color than critical
+			}
 
-      &.medium {
-        stroke: #ffc107; // Or use another orange/yellow tone
-      }
+			&.medium {
+				stroke: #ffc107; // Or use another orange/yellow tone
+			}
 
-      &.low {
-        stroke: $green-700;
-      }
-    }
+			&.low {
+				stroke: $green-700;
+			}
+		}
 
-    .value {
-      font-weight: 600;
-      font-size: 12px;
-      text-align: center;
-      fill: $gray-700;
-      text-anchor: middle;
-      dominant-baseline: middle;
-    }
-  }
+		.value {
+			font-weight: 600;
+			font-size: 12px;
+			text-align: center;
+			fill: $gray-700;
+			text-anchor: middle;
+			dominant-baseline: middle;
+		}
+	}
 }

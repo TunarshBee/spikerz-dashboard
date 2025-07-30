@@ -1,14 +1,8 @@
 <div class="dashboard-container">
-	<button
-		class="mobile-menu-toggle"
-		(click)="onToggleSidebar()"
-		*ngIf="isMobile"
-	>
+	<button class="mobile-menu-toggle" (click)="onToggleSidebar()" *ngIf="isMobile">
 		<i class="fas fa-bars" *ngIf="sidebarCollapsed"></i>
 		<i class="fas fa-times" *ngIf="!sidebarCollapsed"></i>
 	</button>
-	
-
 
 	<app-sidebar
 		[items]="sidebarItems"
@@ -24,11 +18,11 @@
 		<div class="content-wrapper">
 			<div class="left-column">
 				<app-card title="Description">
-					<p class="section-content">{{ currentCVE?.description }}</p>
+					<p class="section-content">{{ currentCVE.description }}</p>
 				</app-card>
 
 				<app-card title="Extra">
-					<p class="section-content">{{ currentCVE?.extra }}</p>
+					<p class="section-content">{{ currentCVE.extra }}</p>
 				</app-card>
 
 				<div>
@@ -70,14 +64,13 @@
 					<div class="additional-content-container">
 						<h3 class="additional-content-heading">Lorem Ipsum Dolor Sit</h3>
 						<div class="remediation-container">
-							@for (remediation of getRemediationEntries(); track
-							remediation.key) {
-							<app-remediation
-								[remediation]="remediation.value"
-								[title]="'Lorem ' + remediation.key"
-								[heading]="'Server ' + remediation.key"
-							>
-							</app-remediation>
+							@for (remediation of getRemediationEntries(); track remediation.key) {
+								<app-remediation
+									[remediation]="remediation.value"
+									[title]="'Lorem ' + remediation.key"
+									[heading]="'Server ' + remediation.key"
+								>
+								</app-remediation>
 							}
 						</div>
 					</div>
@@ -87,26 +80,22 @@
 			<div class="right-column">
 				<!-- Asset Flow Diagram -->
 				<app-asset-flow></app-asset-flow>
-				
+
 				<!-- Contextual Risk Table -->
 				<app-card title="Lorem ipsum dolor sit">
 					<div class="contextual-risk-container">
-
 						<app-contextual-risk-table
-						[assets]="assets"
-						[currentPage]="currentPage"
-						[pageSize]="pageSize"
-						(pageChange)="onPageChange($event)"
+							[assets]="assets"
+							[currentPage]="currentPage"
+							[pageSize]="pageSize"
+							(pageChange)="onPageChange($event)"
 						></app-contextual-risk-table>
-						
+
 						<!-- Contextual Risk Chart -->
-						<app-contextual-risk-chart
-						[riskSummary]="riskSummary"
-						></app-contextual-risk-chart>
+						<app-contextual-risk-chart [riskSummary]="riskSummary"></app-contextual-risk-chart>
 					</div>
 				</app-card>
-
 			</div>
 		</div>
 	</main>
-</div> 
+</div>

@@ -1,90 +1,98 @@
 <app-card title="Lorem Lorem Lorem" variant="default" padding="md">
-  <div class="diagram-container">
-    <!-- Asset Flow Diagram -->
-    <div class="asset-flow-diagram">
-      <div class="flow-node entry-node" 
-           (mouseenter)="showEntryHover = true" 
-           (mouseleave)="showEntryHover = false">
-        <div class="node-icon-container">
-          <img src="icons/venetian-mask.svg" alt="venetian-mask" />
-        </div>
-        <div class="node-label">Lorem ipsum</div>
-      </div>
-      @if (showEntryHover) {
-        <app-vulnerability-tag-grid
-        [title]="'Lorem Ipsum Dolor Sit'"
-        [versions]="['1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4']"
-        [footerLabel]="'Lorem'"
-        [footerVersion]="'1.2.3.4'"
-      ></app-vulnerability-tag-grid>        }
-      <img src="icons/arrow.svg" alt="arrow" />
-      <div class="flow-node middle-node" 
-           (mouseenter)="hoveredMiddleNode = '2'" 
-           (mouseleave)="hoveredMiddleNode = null">
-        <div class="node-icon-container">
-          <img src="icons/server.svg" alt="server" />
-        </div>
-        <div class="node-label">Lorem ipsum</div>
-        <ng-container>
+	<div class="diagram-container">
+		<!-- Asset Flow Diagram -->
+		<div class="asset-flow-diagram">
+			<div
+				class="flow-node entry-node"
+				(mouseenter)="showEntryHover = true"
+				(mouseleave)="showEntryHover = false"
+			>
+				<div class="node-icon-container">
+					<img src="icons/venetian-mask.svg" alt="venetian-mask" />
+				</div>
+				<div class="node-label">Lorem ipsum</div>
+			</div>
+			@if (showEntryHover) {
+				<app-vulnerability-tag-grid
+					[title]="'Lorem Ipsum Dolor Sit'"
+					[versions]="['1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4']"
+					[footerLabel]="'Lorem'"
+					[footerVersion]="'1.2.3.4'"
+				></app-vulnerability-tag-grid>
+			}
+			<img src="icons/arrow.svg" alt="arrow" />
+			<div
+				class="flow-node middle-node"
+				(mouseenter)="hoveredMiddleNode = '2'"
+				(mouseleave)="hoveredMiddleNode = null"
+			>
+				<div class="node-icon-container">
+					<img src="icons/server.svg" alt="server" />
+				</div>
+				<div class="node-label">Lorem ipsum</div>
+				<ng-container>
+					@if (hoveredMiddleNode === '2') {
+						<app-asset-card [assetData]="middleNodeAssets['2']"></app-asset-card>
+					}
+				</ng-container>
+			</div>
+			<img src="icons/arrow.svg" alt="arrow" />
+			<div
+				class="flow-node middle-node"
+				(mouseenter)="hoveredMiddleNode = '3'"
+				(mouseleave)="hoveredMiddleNode = null"
+			>
+				<div class="node-icon-container">
+					<img src="icons/server.svg" alt="server" />
+				</div>
+				<div class="node-label">Lorem ipsum</div>
+				@if (hoveredMiddleNode === '3') {
+					<app-asset-card [assetData]="middleNodeAssets['3']"></app-asset-card>
+				}
+			</div>
+			<img src="icons/branch.svg" alt="branch" />
+			<div class="last-node">
+				<div
+					class="flow-node end-node"
+					(mouseenter)="hoveredEndNode = '4'"
+					(mouseleave)="hoveredEndNode = null"
+				>
+					<div class="node-icon-container">
+						<img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
+						<img src="icons/server.svg" alt="server" />
+					</div>
+					<div class="node-label">Lorem ipsum</div>
+					<div class="node-ip">192.168.1.1</div>
+					@if (hoveredEndNode === '4') {
+						<app-end-node-card [cardData]="endNodeAssets['4']"></app-end-node-card>
+					}
+				</div>
+				<div
+					class="flow-node end-node"
+					(mouseenter)="hoveredEndNode = '5'"
+					(mouseleave)="hoveredEndNode = null"
+				>
+					<div class="node-icon-container">
+						<img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
+						<img src="icons/server.svg" alt="server" />
+					</div>
+					<div class="node-label">Lorem ipsum</div>
+					<div class="node-ip">192.168.1.1</div>
+					@if (hoveredEndNode === '5') {
+						<app-end-node-card [cardData]="endNodeAssets['5']"></app-end-node-card>
+					}
+				</div>
+			</div>
+		</div>
 
-          @if (hoveredMiddleNode === '2') {
-            <app-asset-card [assetData]="middleNodeAssets['2']"></app-asset-card>
-          }
-        </ng-container>
-      </div>
-      <img src="icons/arrow.svg" alt="arrow" />
-      <div class="flow-node middle-node" 
-           (mouseenter)="hoveredMiddleNode = '3'" 
-           (mouseleave)="hoveredMiddleNode = null">
-        <div class="node-icon-container">
-          <img src="icons/server.svg" alt="server" />
-        </div>
-        <div class="node-label">Lorem ipsum</div>
-        @if (hoveredMiddleNode === '3') {
-          <app-asset-card [assetData]="middleNodeAssets['3']"></app-asset-card>
-        }
-      </div>
-      <img src="icons/branch.svg" alt="branch" />
-      <div class="last-node">
-        <div class="flow-node end-node" 
-             (mouseenter)="hoveredEndNode = '4'" 
-             (mouseleave)="hoveredEndNode = null">
-          <div class="node-icon-container">
-            <img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
-            <img src="icons/server.svg" alt="server" />
-          </div>
-          <div class="node-label">Lorem ipsum</div>
-          <div class="node-ip">192.168.1.1</div>
-          @if (hoveredEndNode === '4') {
-            <app-end-node-card [cardData]="endNodeAssets['4']"></app-end-node-card>
-          }
-        </div>
-        <div class="flow-node end-node" 
-             (mouseenter)="hoveredEndNode = '5'" 
-             (mouseleave)="hoveredEndNode = null">
-          <div class="node-icon-container">
-            <img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
-            <img src="icons/server.svg" alt="server" />
-          </div>
-          <div class="node-label">Lorem ipsum</div>
-          <div class="node-ip">192.168.1.1</div>
-          @if (hoveredEndNode === '5') {
-            <app-end-node-card [cardData]="endNodeAssets['5']"></app-end-node-card>
-          }
-        </div>
-      </div>
-    </div>
-
-    <!-- Risk Legend -->
-    <div class="risk-legend">
-      @for (item of riskLegend; track item.status) {
-      <div class="legend-item">
-        <img [src]="'icons/' + item.icon" alt="" />
-        <span class="legend-label" [ngClass]="item.status.toLowerCase()">{{
-          item.label
-        }}</span>
-      </div>
-      }
-    </div>
-  </div>
+		<!-- Risk Legend -->
+		<div class="risk-legend">
+			@for (item of riskLegend; track item.status) {
+				<div class="legend-item">
+					<img [src]="'icons/' + item.icon" alt="" />
+					<span class="legend-label" [ngClass]="item.status.toLowerCase()">{{ item.label }}</span>
+				</div>
+			}
+		</div>
+	</div>
 </app-card>

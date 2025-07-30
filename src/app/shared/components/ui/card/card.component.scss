@@ -4,12 +4,14 @@ $green-700: #02983e;
 $green-800: #00732e;
 $white: #ffffff;
 $gray-50: #f0f1f3;
-$gray-100:#fafafa;
+$gray-100: #fafafa;
 $gray-700: #525d73;
 
 // Mixins
 @mixin card-shadow {
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	box-shadow:
+		0 1px 3px 0 rgba(0, 0, 0, 0.1),
+		0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .card-title {

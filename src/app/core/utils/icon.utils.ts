@@ -14,7 +14,7 @@ export class IconUtils {
 		mask: 'fas fa-user-secret',
 		database: 'fas fa-database',
 		network: 'fas fa-network-wired',
-		application: 'fas fa-code'
+		application: 'fas fa-code',
 	};
 
 	private static svgIconMap: { [key: string]: string } = {
@@ -54,4 +54,4 @@ export class IconUtils {
 				return 'gray';
 		}
 	}
-} 
+}

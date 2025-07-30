@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class LayoutService {
 	private sidebarCollapsedSubject = new BehaviorSubject<boolean>(false);
@@ -16,7 +16,7 @@ export class LayoutService {
 	private checkScreenSize(): void {
 		const isMobile = window.innerWidth <= 768;
 		this.isMobileSubject.next(isMobile);
-		
+
 		// On mobile, sidebar should be closed by default (collapsed = true)
 		// On desktop, sidebar should be open by default (collapsed = false)
 		if (isMobile && this.sidebarCollapsedSubject.value === false) {
@@ -48,4 +48,4 @@ export class LayoutService {
 	getIsMobileValue(): boolean {
 		return this.isMobileSubject.value;
 	}
-} 
+}

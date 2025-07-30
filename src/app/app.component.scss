@@ -1,6 +1,6 @@
 // Variables
-$primary-color: #02983E;
-$green-50: #E9FAF0;
+$primary-color: #02983e;
+$green-50: #e9faf0;
 $white: #ffffff;
 $gray-100: #f3f4f6;
 $gray-200: #e5e7eb;
@@ -27,9 +27,13 @@ $gray-900: #111827;
 
 @mixin responsive($breakpoint) {
 	@if $breakpoint == mobile {
-		@media (max-width: 768px) { @content; }
+		@media (max-width: 768px) {
+			@content;
+		}
 	} @else if $breakpoint == tablet {
-		@media (max-width: 1024px) { @content; }
+		@media (max-width: 1024px) {
+			@content;
+		}
 	}
 }
 

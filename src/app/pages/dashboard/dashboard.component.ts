@@ -2,10 +2,20 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { SidebarComponent, ISidebarItem, IUserProfile } from '../../shared/components/sidebar/sidebar.component';
+import {
+	SidebarComponent,
+	ISidebarItem,
+	IUserProfile,
+} from '../../shared/components/sidebar/sidebar.component';
 import { CardComponent } from '../../shared/components/ui/card/card.component';
 
-import { IAsset, IVulnerability, IRiskSummary, IAssetCard } from '../../core/interfaces/asset.interface';
+import {
+	IAsset,
+	IVulnerability,
+	IRiskSummary,
+	IAssetCard,
+	ICVE,
+} from '../../core/interfaces/asset.interface';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { LayoutService } from '../../core/services/layout.service';
 import { RemediationComponent } from '../../shared/components/ui/remediation/remediation.component';
@@ -17,9 +27,17 @@ import { IconUtils } from '../../core/utils/icon.utils';
 @Component({
 	selector: 'app-dashboard',
 	standalone: true,
-	imports: [CommonModule, SidebarComponent, CardComponent, RemediationComponent, AssetFlowComponent, ContextualRiskTableComponent, ContextualRiskChartComponent],
+	imports: [
+		CommonModule,
+		SidebarComponent,
+		CardComponent,
+		RemediationComponent,
+		AssetFlowComponent,
+		ContextualRiskTableComponent,
+		ContextualRiskChartComponent,
+	],
 	templateUrl: './dashboard.component.html',
-	styleUrls: ['./dashboard.component.scss']
+	styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 	sidebarItems: ISidebarItem[] = [
@@ -29,31 +47,31 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		{ id: 'reports', icon: 'reports', label: 'Lorem', active: false },
 		{ id: 'plug', icon: 'plug', label: 'Lorem', active: false },
 		{ id: 'docs', icon: 'documentation', label: 'Lorem', active: false },
-		{ id: 'filters', icon: 'filters', label: 'Lorem', active: false }
+		{ id: 'filters', icon: 'filters', label: 'Lorem', active: false },
 	];
 
 	remediations = {
 		A: 'Lorem ipsum dolor sit amet consectetur. In laoreet elementum luctus odio. Id enim urna.',
 		B: 'Lorem ipsum dolor sit amet consectetur. Quis viverra etiam pellentesque lectus semper in massa purus. Auctor aenean aenean senectus massa dignissim vehicula mi erat purus. Praesent scelerisque aliquet metus sagittis dictum sed sed. Sed venenatis sed urna quam.',
 		C: 'Lorem ipsum dolor sit amet consectetur. Nunc vitae tortor convallis vitae arcu. Magna.',
-	}
+	};
 
-	getRemediationEntries(): Array<{key: string, value: string}> {
+	getRemediationEntries(): Array<{ key: string; value: string }> {
 		return Object.entries(this.remediations).map(([key, value]) => ({
 			key,
-			value
+			value,
 		}));
 	}
 
 	userProfile: IUserProfile = {
 		name: 'John Doe',
 		email: 'john.doe@company.com',
-		avatar: '👤'
+		avatar: '👤',
 	};
 
 	// Dashboard data
-	currentCVE: any;
-	
+	currentCVE!: ICVE;
+
 	assets: IAsset[] = [];
 	riskSummary: IRiskSummary = { critical: 0, high: 0, medium: 0, low: 0, total: 0 };
 	vulnerabilities: IVulnerability[] = [];
@@ -75,14 +93,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private dashboardService: DashboardService,
-		private layoutService: LayoutService
+		private layoutService: LayoutService,
 	) {
 		// Initialize mobile state immediately
-		this.isMobile = this.layoutService.getIsMobileValue();
-		this.sidebarCollapsed = this.layoutService.getSidebarCollapsedValue();
 	}
 
 	ngOnInit(): void {
+		this.isMobile = this.layoutService.getIsMobileValue();
+		this.sidebarCollapsed = this.layoutService.getSidebarCollapsedValue();
 		this.loadData();
 		this.setupLayoutSubscriptions();
 	}
@@ -95,56 +113,55 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		// Load current CVE
 		this.currentCVE = this.dashboardService.getCurrentCVE();
 
-
 		// Load assets
 		this.subscriptions.add(
-			this.dashboardService.getAssets().subscribe(data => {
+			this.dashboardService.getAssets().subscribe((data) => {
 				this.assets = data;
 				this.updatePaginatedAssets();
-			})
+			}),
 		);
 
 		// Load risk summary
 		this.subscriptions.add(
-			this.dashboardService.getRiskSummary().subscribe(data => {
+			this.dashboardService.getRiskSummary().subscribe((data) => {
 				this.riskSummary = data;
-			})
+			}),
 		);
 
 		// Load vulnerabilities
 		this.subscriptions.add(
-			this.dashboardService.getVulnerabilities().subscribe(data => {
+			this.dashboardService.getVulnerabilities().subscribe((data) => {
 				this.vulnerabilities = data;
-			})
+			}),
 		);
 
 		// Load asset cards
 		this.subscriptions.add(
-			this.dashboardService.getAssetCards().subscribe(data => {
+			this.dashboardService.getAssetCards().subscribe((data) => {
 				this.assetCards = data;
-			})
+			}),
 		);
 	}
 
 	private setupLayoutSubscriptions(): void {
 		// Subscribe to sidebar state
 		this.subscriptions.add(
-			this.layoutService.getSidebarCollapsed().subscribe(collapsed => {
+			this.layoutService.getSidebarCollapsed().subscribe((collapsed) => {
 				this.sidebarCollapsed = collapsed;
-			})
+			}),
 		);
 
 		// Subscribe to mobile state
 		this.subscriptions.add(
-			this.layoutService.isMobile().subscribe(isMobile => {
+			this.layoutService.isMobile().subscribe((isMobile) => {
 				this.isMobile = isMobile;
-			})
+			}),
 		);
 	}
 
 	// Event handlers
 	onSidebarItemClick(itemId: string): void {
-		this.sidebarItems.forEach(item => {
+		this.sidebarItems.forEach((item) => {
 			item.active = item.id === itemId;
 		});
 	}
@@ -162,8 +179,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.showVulnerabilityDrawer = false;
 		this.selectedAsset = null;
 	}
-
-
 
 	// Pagination methods
 	updatePaginatedAssets(): void {
@@ -194,4 +209,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	getRiskLevelColor(level: string): string {
 		return IconUtils.getRiskLevelColor(level);
 	}
-} 
+}

@@ -20,7 +20,7 @@ export interface IUserProfile {
 	standalone: true,
 	imports: [CommonModule],
 	templateUrl: './sidebar.component.html',
-	styleUrls: ['./sidebar.component.scss']
+	styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
 	@Input() items: ISidebarItem[] = [];
@@ -50,4 +50,4 @@ export class SidebarComponent {
 	isSvgIcon(icon: string): boolean {
 		return IconUtils.isSvgIcon(icon);
 	}
-} 
+}

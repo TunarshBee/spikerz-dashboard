@@ -52,4 +52,10 @@ export interface IAssetCard {
 		value: string;
 		highlight: 'yellow' | 'blue' | 'purple' | 'green';
 	}>;
-} 
+}
+
+export interface ICVE {
+	id: string;
+	description: string;
+	extra: string;
+}

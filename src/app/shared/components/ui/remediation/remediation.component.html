@@ -1,22 +1,18 @@
 <div class="additional-content" (click)="toggleRemediation()">
-    <h3 class="additional-content-title">{{ title() }}</h3>
-    <div class="additional-content-details">
-      <div class="additional-content-detail">
-        <div class="icon-container">
-          <img
-            src="/icons/server.svg"
-            class="svg-icon"
-            alt="server-icon"
-          />
-          <div>
-            <h3>Server</h3>
-            <p>Server</p>
-          </div>
-        </div>
-        <h3 class="additional-content-title">{{ heading() }}</h3>
-      </div>
-      <h2 class="additional-content-description" [class.show]="showRemediation()">
-        {{ remediation() }}
-      </h2>
-    </div>
-  </div>
+	<h3 class="additional-content-title">{{ title() }}</h3>
+	<div class="additional-content-details">
+		<div class="additional-content-detail">
+			<div class="icon-container">
+				<img src="/icons/server.svg" class="svg-icon" alt="server-icon" />
+				<div>
+					<h3>Server</h3>
+					<p>Server</p>
+				</div>
+			</div>
+			<h3 class="additional-content-title">{{ heading() }}</h3>
+		</div>
+		<h2 class="additional-content-description" [class.show]="showRemediation()">
+			{{ remediation() }}
+		</h2>
+	</div>
+</div>
