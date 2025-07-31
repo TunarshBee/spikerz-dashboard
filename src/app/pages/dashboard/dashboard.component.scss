@@ -32,6 +32,12 @@
 	background-color: var(--gray-25);
 	position: relative;
 	overflow: hidden;
+
+	@include responsive(mobile) {
+		width: 100vw;
+		height: 100vh;
+		overflow-x: hidden;
+	}
 }
 
 .mobile-menu-toggle {
@@ -71,6 +77,11 @@
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+
+	@include responsive(mobile) {
+		width: 100%;
+		overflow-x: hidden;
+	}
 }
 
 .header {
@@ -118,7 +129,10 @@
 	height: 100vh;
 
 	@include responsive(mobile) {
-		padding: 1rem;
+		padding: 0.5rem;
+		width: 100%;
+		height: 100vh;
+		overflow-x: hidden;
 	}
 }
 
@@ -133,7 +147,9 @@
 		flex-direction: column;
 		gap: 10px;
 		margin: 0;
-		overflow-y: auto;
+		padding: 0;
+		width: 100%;
+		overflow-x: hidden;
 	}
 }
 
@@ -153,7 +169,11 @@
 
 	@include responsive(mobile) {
 		min-height: fit-content;
+		max-width: 100%;
+		width: 100%;
+		padding: 15px;
 		overflow-y: auto;
+		overflow-x: hidden;
 	}
 }
 
@@ -170,8 +190,10 @@
 
 	@include responsive(mobile) {
 		max-width: 100%;
+		width: 100%;
 		min-height: fit-content;
-		overflow-x: auto;
+		padding: 15px;
+		overflow-x: hidden;
 		overflow-y: auto;
 	}
 }
