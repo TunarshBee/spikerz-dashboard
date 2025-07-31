@@ -137,22 +137,22 @@
 			}
 
 			&.critical {
-				background: rgba(var(--red), 0.1);
+				background: rgba(229, 55, 43, 0.1);
 				color: var(--red);
 			}
 
 			&.high {
-				background: rgba(var(--orange), 0.1);
+				background: rgba(255, 149, 0, 0.1);
 				color: var(--orange);
 			}
 
 			&.medium {
-				background: rgba(var(--orange), 0.1);
+				background: rgba(255, 149, 0, 0.1);
 				color: var(--orange);
 			}
 
 			&.low {
-				background: rgba(var(--green-700), 0.1);
+				background: rgba(2, 152, 62, 0.1);
 				color: var(--green-700);
 			}
 		}
