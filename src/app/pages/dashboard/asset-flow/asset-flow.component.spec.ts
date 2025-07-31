@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AssetFlowComponent } from './asset-flow.component';
 import { DashboardService } from '../../../core/services/dashboard.service';
 import { AssetFlowNode } from '../../../core/types';
@@ -33,7 +34,7 @@ describe('AssetFlowComponent', () => {
 		mockDashboardService.getAssetCards.and.returnValue(of([]));
 
 		await TestBed.configureTestingModule({
-			imports: [AssetFlowComponent],
+			imports: [AssetFlowComponent, HttpClientTestingModule],
 			providers: [{ provide: DashboardService, useValue: mockDashboardService }],
 		}).compileComponents();
 

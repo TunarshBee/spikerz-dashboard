@@ -1,0 +1,58 @@
+{
+	"common": {
+		"asset": "Asset",
+		"contextualRisk": "Contextual Risk",
+		"description": "Description",
+		"extra": "Extra",
+		"settings": "Settings",
+		"documentation": "Documentation",
+		"logout": "Logout",
+		"user": "User",
+		"yes": "Yes",
+		"showing": "Showing",
+		"of": "of"
+	},
+	"dashboard": {
+		"details": {
+			"label1": "Lorem Ipsum Dolor",
+			"label2": "Lorem Ipsum Dolor",
+			"label3": "Lorem Ipsum Dolor",
+			"label4": "Lorem Ipsum Dolor",
+			"label5": "Lorem Ipsum Dolor",
+			"label6": "Lorem Ipsum Dolor",
+			"label7": "Lorem Ipsum Dolor",
+			"label8": "Lorem Ipsum Dolor",
+			"value1": "10/19/2017",
+			"value2": "Ut",
+			"value3": "Eros",
+			"value4": "Yes",
+			"value5": "Sit",
+			"value6": "Lorem Ipsum Dolor",
+			"value7": "Lorem Ipsum Dolor",
+			"value8": "Lorem Ipsum Dolor"
+		},
+		"remediation": {
+			"heading": "Lorem Ipsum Dolor Sit",
+			"title": "Lorem",
+			"serverTitle": "Server"
+		},
+		"card": {
+			"title1": "Lorem ipsum dolor sit",
+			"title2": "Lorem Lorem Lorem"
+		},
+		"assetFlow": {
+			"entryNode": "Lorem ipsum",
+			"middleNode": "Lorem ipsum",
+			"endNode": "Lorem ipsum",
+			"vulnerabilityTitle": "Lorem Ipsum Dolor Sit",
+			"footerLabel": "Lorem",
+			"footerVersion": "1.2.3.4"
+		},
+		"pagination": {
+			"showing": "Showing {{start}}-{{end}} of {{total}}"
+		}
+	},
+	"sidebar": {
+		"lorem": "Lorem"
+	}
+}

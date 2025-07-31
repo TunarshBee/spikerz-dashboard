@@ -1,4 +1,4 @@
-<app-card title="Lorem Lorem Lorem" variant="default" padding="md">
+<app-card [title]="'dashboard.card.title2' | translate" variant="default" padding="md">
 	<div class="diagram-container">
 		<div class="asset-flow-diagram">
 			<div
@@ -9,14 +9,14 @@
 				<div class="node-icon-container">
 					<img src="icons/venetian-mask.svg" alt="venetian-mask" />
 				</div>
-				<div class="node-label">Lorem ipsum</div>
+				<div class="node-label">{{ 'dashboard.assetFlow.entryNode' | translate }}</div>
 			</div>
 			@if (showEntryHover) {
 				<app-vulnerability-tag-grid
-					[title]="'Lorem Ipsum Dolor Sit'"
+					[title]="'dashboard.assetFlow.vulnerabilityTitle' | translate"
 					[versions]="['1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4', '1.2.3.4']"
-					[footerLabel]="'Lorem'"
-					[footerVersion]="'1.2.3.4'"
+					[footerLabel]="'dashboard.assetFlow.footerLabel' | translate"
+					[footerVersion]="'dashboard.assetFlow.footerVersion' | translate"
 				></app-vulnerability-tag-grid>
 			}
 			<img src="icons/arrow.svg" alt="arrow" />
@@ -28,7 +28,7 @@
 				<div class="node-icon-container">
 					<img src="icons/server.svg" alt="server" />
 				</div>
-				<div class="node-label">Lorem ipsum</div>
+				<div class="node-label">{{ 'dashboard.assetFlow.middleNode' | translate }}</div>
 				<ng-container>
 					@if (hoveredMiddleNode === '2') {
 						<app-asset-card [assetData]="middleNodeAssets['2']"></app-asset-card>
@@ -44,7 +44,7 @@
 				<div class="node-icon-container">
 					<img src="icons/server.svg" alt="server" />
 				</div>
-				<div class="node-label">Lorem ipsum</div>
+				<div class="node-label">{{ 'dashboard.assetFlow.middleNode' | translate }}</div>
 				@if (hoveredMiddleNode === '3') {
 					<app-asset-card [assetData]="middleNodeAssets['3']"></app-asset-card>
 				}
@@ -60,7 +60,7 @@
 						<img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
 						<img src="icons/server.svg" alt="server" />
 					</div>
-					<div class="node-label">Lorem ipsum</div>
+					<div class="node-label">{{ 'dashboard.assetFlow.endNode' | translate }}</div>
 					<div class="node-ip">192.168.1.1</div>
 					@if (hoveredEndNode === '4') {
 						<app-end-node-card [cardData]="endNodeAssets['4']"></app-end-node-card>
@@ -75,7 +75,7 @@
 						<img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
 						<img src="icons/server.svg" alt="server" />
 					</div>
-					<div class="node-label">Lorem ipsum</div>
+					<div class="node-label">{{ 'dashboard.assetFlow.endNode' | translate }}</div>
 					<div class="node-ip">192.168.1.1</div>
 					@if (hoveredEndNode === '5') {
 						<app-end-node-card [cardData]="endNodeAssets['5']"></app-end-node-card>

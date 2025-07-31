@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconUtils } from '../../../core/utils/icon.utils';
 import { SidebarItem, UserProfile } from '../../../core/types';
+import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 
 @Component({
 	selector: 'app-sidebar',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, TranslatePipe],
 	templateUrl: './sidebar.component.html',
 	styleUrls: ['./sidebar.component.scss'],
 })

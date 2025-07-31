@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 
 import { CardComponent } from '../../../shared/components/ui/card/card.component';
+import { TranslatePipe } from '../../../core/pipes/translate.pipe';
 import {
 	Asset,
 	AssetCard,
@@ -31,6 +32,7 @@ import { APP_CONSTANTS } from '../../../core/constants/app.constants';
 		VulnerabilityTagGridComponent,
 		AssetCardComponent,
 		EndNodeCardComponent,
+		TranslatePipe,
 	],
 	templateUrl: './asset-flow.component.html',
 	styleUrl: './asset-flow.component.scss',

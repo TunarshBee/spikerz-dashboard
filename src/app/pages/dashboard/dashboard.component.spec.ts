@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { LayoutService } from '../../core/services/layout.service';
@@ -66,7 +67,7 @@ describe('DashboardComponent', () => {
 		mockLayoutService.isMobile.and.returnValue(of(false));
 
 		await TestBed.configureTestingModule({
-			imports: [DashboardComponent],
+			imports: [DashboardComponent, HttpClientTestingModule],
 			providers: [
 				{ provide: DashboardService, useValue: mockDashboardService },
 				{ provide: LayoutService, useValue: mockLayoutService },

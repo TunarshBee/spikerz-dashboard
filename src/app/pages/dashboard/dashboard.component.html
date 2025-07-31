@@ -1,8 +1,11 @@
 <div class="dashboard-container">
-	<button class="mobile-menu-toggle" (click)="onToggleSidebar()" *ngIf="isMobile">
-		<i class="fas fa-bars" *ngIf="sidebarCollapsed"></i>
-		<i class="fas fa-times" *ngIf="!sidebarCollapsed"></i>
-	</button>
+	<div class="dashboard-header">
+		<button class="mobile-menu-toggle" (click)="onToggleSidebar()" *ngIf="isMobile">
+			<i class="fas fa-bars" *ngIf="sidebarCollapsed"></i>
+			<i class="fas fa-times" *ngIf="!sidebarCollapsed"></i>
+		</button>
+		<app-language-switcher></app-language-switcher>
+	</div>
 
 	<app-sidebar
 		[items]="sidebarItems"
@@ -17,58 +20,64 @@
 	<main class="main-content">
 		<div class="content-wrapper">
 			<div class="left-column">
-				<app-card title="Description">
+				<app-card [title]="'common.description' | translate">
 					<p class="section-content">{{ currentCVE.description }}</p>
 				</app-card>
 
-				<app-card title="Extra">
+				<app-card [title]="'common.extra' | translate">
 					<p class="section-content">{{ currentCVE.extra }}</p>
 				</app-card>
 
 				<div>
 					<div class="details-table">
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">10/19/2017</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label1' | translate }}</h3>
+							<p class="detail-value">{{ 'dashboard.details.value1' | translate }}</p>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Ut</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label2' | translate }}</h3>
+							<p class="detail-value">{{ 'dashboard.details.value2' | translate }}</p>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Eros</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label3' | translate }}</h3>
+							<p class="detail-value">{{ 'dashboard.details.value3' | translate }}</p>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value"><i class="fas fa-check"></i> Yes</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label4' | translate }}</h3>
+							<p class="detail-value">
+								<i class="fas fa-check"></i> {{ 'dashboard.details.value4' | translate }}
+							</p>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Sit</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label5' | translate }}</h3>
+							<p class="detail-value">{{ 'dashboard.details.value5' | translate }}</p>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Lorem Ipsum Dolor</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label6' | translate }}</h3>
+							<p class="detail-value">{{ 'dashboard.details.value6' | translate }}</p>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Lorem Ipsum Dolor</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label7' | translate }}</h3>
+							<p class="detail-value">{{ 'dashboard.details.value7' | translate }}</p>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Lorem Ipsum Dolor</p>
+							<h3 class="detail-label">{{ 'dashboard.details.label8' | translate }}</h3>
+							<p class="detail-value">{{ 'dashboard.details.value8' | translate }}</p>
 						</div>
 					</div>
 
 					<div class="additional-content-container">
-						<h3 class="additional-content-heading">Lorem Ipsum Dolor Sit</h3>
+						<h3 class="additional-content-heading">
+							{{ 'dashboard.remediation.heading' | translate }}
+						</h3>
 						<div class="remediation-container">
 							@for (remediation of getRemediationEntries(); track remediation.key) {
 								<app-remediation
 									[remediation]="remediation.value"
-									[title]="'Lorem ' + remediation.key"
-									[heading]="'Server ' + remediation.key"
+									[title]="('dashboard.remediation.title' | translate) + ' ' + remediation.key"
+									[heading]="
+										('dashboard.remediation.serverTitle' | translate) + ' ' + remediation.key
+									"
 								>
 								</app-remediation>
 							}
@@ -80,7 +89,7 @@
 			<div class="right-column">
 				<app-asset-flow></app-asset-flow>
 
-				<app-card title="Lorem ipsum dolor sit">
+				<app-card [title]="'dashboard.card.title1' | translate">
 					<div class="contextual-risk-container">
 						<app-contextual-risk-table
 							[assets]="assets"

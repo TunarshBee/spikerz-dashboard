@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SidebarComponent } from './sidebar.component';
 import { SidebarItem, UserProfile } from '../../../core/types';
 
@@ -19,7 +20,7 @@ describe('SidebarComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [SidebarComponent],
+			imports: [SidebarComponent, HttpClientTestingModule],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(SidebarComponent);

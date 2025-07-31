@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, signal } from '@angular/core';
+import { TranslatePipe } from '../../../../core/pipes/translate.pipe';
 
 @Component({
 	selector: 'app-remediation',
-	imports: [CommonModule],
+	imports: [CommonModule, TranslatePipe],
 	templateUrl: './remediation.component.html',
 	styleUrl: './remediation.component.scss',
 })

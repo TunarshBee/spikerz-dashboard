@@ -34,6 +34,17 @@
 	overflow: hidden;
 }
 
+.dashboard-header {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1000;
+	padding: 16px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
 .mobile-menu-toggle {
 	position: fixed;
 	top: 0.5rem;

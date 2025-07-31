@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { SidebarComponent } from '../../shared/components/sidebar/sidebar.component';
 import { CardComponent } from '../../shared/components/ui/card/card.component';
+import { TranslatePipe } from '../../core/pipes/translate.pipe';
 
 import {
 	Asset,
@@ -21,6 +22,7 @@ import { AssetFlowComponent } from './asset-flow/asset-flow.component';
 import { ContextualRiskTableComponent } from './contextual-risk-table/contextual-risk-table.component';
 import { ContextualRiskChartComponent } from './contextual-risk-chart/contextual-risk-chart.component';
 import { APP_CONSTANTS } from '../../core/constants/app.constants';
+import { LanguageSwitcherComponent } from '../../shared/components/language-switcher/language-switcher.component';
 
 @Component({
 	selector: 'app-dashboard',
@@ -33,6 +35,8 @@ import { APP_CONSTANTS } from '../../core/constants/app.constants';
 		AssetFlowComponent,
 		ContextualRiskTableComponent,
 		ContextualRiskChartComponent,
+		TranslatePipe,
+		LanguageSwitcherComponent,
 	],
 	templateUrl: './dashboard.component.html',
 	styleUrls: ['./dashboard.component.scss'],

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ContextualRiskTableComponent } from './contextual-risk-table.component';
 import { Asset } from '../../../core/types';
 import { RISK_LEVELS, ASSET_STATUS } from '../../../core/constants/risk.constants';
@@ -28,7 +29,7 @@ describe('ContextualRiskTableComponent', () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [ContextualRiskTableComponent],
+			imports: [ContextualRiskTableComponent, HttpClientTestingModule],
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ContextualRiskTableComponent);
