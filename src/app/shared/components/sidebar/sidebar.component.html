@@ -27,6 +27,9 @@
 						[alt]="item.label + ' icon'"
 					/>
 					<span class="nav-label" *ngIf="!collapsed">{{ item.label }}</span>
+					@if (collapsed) {
+						<div class="nav-tooltip">{{ item.label }}</div>
+					}
 				</button>
 			</li>
 		</ul>
@@ -35,12 +38,18 @@
 				<button class="nav-link" [attr.aria-label]="'settings' | translate">
 					<img src="icons/settings.svg" class="svg-icon" [alt]="'settings' | translate" />
 					<span class="nav-label" *ngIf="!collapsed">{{ 'sidebar.lorem' | translate }}</span>
+					@if (collapsed) {
+						<div class="nav-tooltip">{{ 'sidebar.lorem' | translate }}</div>
+					}
 				</button>
 			</li>
 			<li class="nav-item">
 				<button class="nav-link" [attr.aria-label]="'documentation' | translate">
 					<img src="icons/preferences.svg" class="svg-icon" [alt]="'preferences'" />
 					<span class="nav-label" *ngIf="!collapsed">{{ 'sidebar.lorem' | translate }}</span>
+					@if (collapsed) {
+						<div class="nav-tooltip">{{ 'sidebar.lorem' | translate }}</div>
+					}
 				</button>
 			</li>
 		</ul>
