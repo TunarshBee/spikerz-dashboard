@@ -1,74 +1,100 @@
-<aside class="sidebar" [class.collapsed]="collapsed">
+<aside
+	class="sidebar"
+	[class.collapsed]="collapsed"
+	id="sidebar-navigation"
+	role="navigation"
+	aria-label="Main navigation"
+>
 	@if (!isMobile) {
-		<div class="sidebar-header">
-			<button class="sidebar-toggle" (click)="onToggleSidebar()">
+		<header class="sidebar-header">
+			<button
+				class="sidebar-toggle"
+				(click)="onToggleSidebar()"
+				[attr.aria-label]="collapsed ? 'Expand sidebar' : 'Collapse sidebar'"
+				[attr.aria-expanded]="!collapsed"
+				[attr.aria-controls]="'sidebar-navigation'"
+			>
 				@if (collapsed) {
-					<i class="fas fa-chevron-right"></i>
+					<i class="fas fa-chevron-right" aria-hidden="true"></i>
 				} @else {
-					<i class="fas fa-chevron-left"></i>
+					<i class="fas fa-chevron-left" aria-hidden="true"></i>
 				}
 			</button>
-		</div>
+		</header>
 	}
 
-	<nav class="sidebar-nav">
-		<ul class="nav-list">
-			<li *ngFor="let item of items" class="nav-item">
+	<nav class="sidebar-nav" aria-label="Primary navigation">
+		<ul class="nav-list" role="menubar" (keydown)="onKeyDown($event)">
+			<li *ngFor="let item of items; let i = index" class="nav-item" role="none">
 				<button
 					class="nav-link"
 					[class.active]="item.active"
 					(click)="onItemClick(item.id)"
 					[attr.aria-label]="item.label"
+					[attr.aria-current]="item.active ? 'page' : null"
+					role="menuitem"
+					[attr.tabindex]="i === 0 ? '0' : '-1'"
 				>
 					<img
 						*ngIf="isSvgIcon(item.icon)"
 						[src]="getSvgIcon(item.icon)"
 						class="svg-icon"
 						[alt]="item.label + ' icon'"
+						aria-hidden="true"
 					/>
 					<span class="nav-label" *ngIf="!collapsed">{{ item.label }}</span>
 					@if (collapsed) {
-						<div class="nav-tooltip">{{ item.label }}</div>
+						<div class="nav-tooltip" role="tooltip" aria-hidden="true">{{ item.label }}</div>
 					}
 				</button>
 			</li>
 		</ul>
-		<ul class="nav-list">
-			<li class="nav-item">
+		<ul class="nav-list" role="menubar" (keydown)="onKeyDown($event)">
+			<li class="nav-item" role="none">
 				<button class="nav-link" [attr.aria-label]="'settings'">
-					<img src="icons/settings.svg" class="svg-icon" [alt]="'settings'" />
+					<img src="icons/settings.svg" class="svg-icon" [alt]="'settings'" aria-hidden="true" />
 					<span class="nav-label" *ngIf="!collapsed">Lorem</span>
 					@if (collapsed) {
-						<div class="nav-tooltip">Lorem</div>
+						<div class="nav-tooltip" role="tooltip" aria-hidden="true">Lorem</div>
 					}
 				</button>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item" role="none">
 				<button class="nav-link" [attr.aria-label]="'documentation'">
-					<img src="icons/preferences.svg" class="svg-icon" [alt]="'preferences'" />
+					<img
+						src="icons/preferences.svg"
+						class="svg-icon"
+						[alt]="'preferences'"
+						aria-hidden="true"
+					/>
 					<span class="nav-label" *ngIf="!collapsed">Lorem</span>
 					@if (collapsed) {
-						<div class="nav-tooltip">Lorem</div>
+						<div class="nav-tooltip" role="tooltip" aria-hidden="true">Lorem</div>
 					}
 				</button>
 			</li>
 		</ul>
 	</nav>
 
-	<div class="sidebar-footer">
+	<footer class="sidebar-footer">
 		<div class="user-profile">
 			<div class="user-avatar">
-				<img src="icons/avatar.svg" class="svg-icon" [alt]="'user'" />
+				<img src="icons/avatar.svg" class="svg-icon" [alt]="'user avatar'" aria-hidden="true" />
 			</div>
 			@if (!collapsed && userProfile) {
 				<div class="user-info">
-					<h3 class="user-name">{{ userProfile.name }}</h3>
-					<p class="user-name">{{ userProfile.email }}</p>
+					<h3 class="user-name" id="user-name">{{ userProfile.name }}</h3>
+					<p class="user-name" id="user-email">{{ userProfile.email }}</p>
 				</div>
-				<button class="user-menu-toggle">
-					<img src="icons/logout.svg" class="svg-icon" [alt]="'logout'" />
+				<button
+					class="user-menu-toggle"
+					aria-label="User menu"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
+					<img src="icons/logout.svg" class="svg-icon" [alt]="'logout'" aria-hidden="true" />
 				</button>
 			}
 		</div>
-	</div>
+	</footer>
 </aside>

@@ -1,36 +1,51 @@
-<div class="contextual-risk-container">
-	<div class="contextual-risk-table-header">
-		<h3 class="contextual-risk-table-header-item">Asset</h3>
+<section
+	class="contextual-risk-container"
+	role="region"
+	aria-labelledby="risk-table-heading"
+	(keydown)="onKeyDown($event)"
+>
+	<header class="contextual-risk-table-header">
+		<h3 id="risk-table-heading" class="contextual-risk-table-header-item">Asset</h3>
 		<h3 class="contextual-risk-table-header-item">Contextual Risk</h3>
-	</div>
-	<div class="asset-list">
+	</header>
+	<ul class="asset-list" role="list">
 		@for (asset of paginatedAssets; track asset.id) {
-			<div class="asset-item">
+			<li class="asset-item" role="listitem">
 				<div class="asset-icon">
-					<img [src]="'icons/' + asset.icon + '.svg'" [alt]="asset.name" />
+					<img
+						[src]="'icons/' + asset.icon + '.svg'"
+						[alt]="asset.name + ' icon'"
+						aria-hidden="true"
+					/>
 				</div>
 				<div class="asset-info">
-					<div class="asset-name">{{ asset.name }}</div>
-					<div class="asset-ip">{{ asset.ipAddress }}</div>
+					<h4 class="asset-name" id="asset-name-{{ asset.id }}">{{ asset.name }}</h4>
+					<address class="asset-ip">{{ asset.ipAddress }}</address>
 				</div>
 				<div class="asset-risk">
-					<span class="risk-badge" [ngClass]="asset.riskLevel.toLowerCase()">
+					<span
+						class="risk-badge"
+						[ngClass]="asset.riskLevel.toLowerCase()"
+						role="status"
+						[attr.aria-label]="'Risk level: ' + asset.riskLevel"
+					>
 						{{ asset.riskLevel }}
 					</span>
 				</div>
-			</div>
+			</li>
 		}
-	</div>
+	</ul>
 
 	@if (assets.length > pageSize) {
-		<div class="pagination">
+		<nav class="pagination" aria-label="Asset list pagination">
 			<div class="pagination-controls">
 				<button
 					class="pagination-btn"
 					[disabled]="currentPage === 1"
 					(click)="onPageChange(currentPage - 1)"
+					aria-label="Go to previous page"
 				>
-					<span class="arrow-left">
+					<span class="arrow-left" aria-hidden="true">
 						<svg
 							width="16"
 							height="16"
@@ -48,13 +63,14 @@
 						</svg>
 					</span>
 				</button>
-				<div class="pagination-info">{{ pageInfo }}</div>
+				<p class="pagination-info" aria-live="polite">{{ pageInfo }}</p>
 				<button
 					class="pagination-btn"
 					[disabled]="currentPage === totalPages"
 					(click)="onPageChange(currentPage + 1)"
+					aria-label="Go to next page"
 				>
-					<span class="arrow-right">
+					<span class="arrow-right" aria-hidden="true">
 						<svg
 							width="16"
 							height="16"
@@ -73,6 +89,6 @@
 					</span>
 				</button>
 			</div>
-		</div>
+		</nav>
 	}
-</div>
+</section>

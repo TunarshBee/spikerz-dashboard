@@ -1,13 +1,13 @@
-<div class="end-node-card">
-	<div class="card-header">
+<article class="end-node-card">
+	<header class="card-header">
 		<div class="asset-icon">
 			<img [src]="'icons/server.svg'" [alt]="cardData.name" />
 		</div>
 		<div class="asset-info">
-			<div class="asset-name">{{ cardData.name }}</div>
-			<div class="asset-ip">{{ cardData.ipAddress }}</div>
+			<h4 class="asset-name">{{ cardData.name }}</h4>
+			<address class="asset-ip">{{ cardData.ipAddress }}</address>
 		</div>
-	</div>
+	</header>
 
 	<div class="card-metadata">
 		@for (meta of cardData.metadata; track $index) {
@@ -29,4 +29,4 @@
 			</div>
 		}
 	</div>
-</div>
+</article>

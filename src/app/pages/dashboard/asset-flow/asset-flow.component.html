@@ -1,16 +1,27 @@
 <app-card title="Lorem Lorem Lorem" variant="default" padding="md">
-	<div class="diagram-container">
-		<div class="asset-flow-diagram">
-			<div
+	<section class="diagram-container" role="region" aria-labelledby="flow-diagram-heading">
+		<h2 id="flow-diagram-heading" class="visually-hidden">Asset Flow Diagram</h2>
+		<div
+			class="asset-flow-diagram"
+			role="img"
+			aria-label="Asset flow diagram showing network connections"
+		>
+			<article
 				class="flow-node entry-node"
 				(mouseenter)="showEntryHover = true"
 				(mouseleave)="showEntryHover = false"
+				role="button"
+				tabindex="0"
+				aria-label="Entry node: Lorem ipsum"
+				(click)="showEntryHover = !showEntryHover"
+				(keydown.enter)="showEntryHover = !showEntryHover"
+				(keydown.space)="showEntryHover = !showEntryHover; $event.preventDefault()"
 			>
 				<div class="node-icon-container">
-					<img src="icons/venetian-mask.svg" alt="venetian-mask" />
+					<img src="icons/venetian-mask.svg" alt="venetian-mask" aria-hidden="true" />
 				</div>
-				<div class="node-label">Lorem ipsum</div>
-			</div>
+				<h4 class="node-label">Lorem ipsum</h4>
+			</article>
 			@if (showEntryHover) {
 				<app-vulnerability-tag-grid
 					[title]="'Lorem Ipsum Dolor Sit'"
@@ -19,78 +30,122 @@
 					[footerVersion]="'1.2.3.4'"
 				></app-vulnerability-tag-grid>
 			}
-			<img src="icons/arrow.svg" alt="arrow" />
-			<div
+			<img src="icons/arrow.svg" alt="arrow" aria-hidden="true" />
+			<article
 				class="flow-node middle-node"
 				(mouseenter)="hoveredMiddleNode = '2'"
 				(mouseleave)="hoveredMiddleNode = null"
+				role="button"
+				tabindex="0"
+				aria-label="Middle node 2: Lorem ipsum"
+				(click)="hoveredMiddleNode = hoveredMiddleNode === '2' ? null : '2'"
+				(keydown.enter)="hoveredMiddleNode = hoveredMiddleNode === '2' ? null : '2'"
+				(keydown.space)="
+					hoveredMiddleNode = hoveredMiddleNode === '2' ? null : '2'; $event.preventDefault()
+				"
 			>
 				<div class="node-icon-container">
-					<img src="icons/server.svg" alt="server" />
+					<img src="icons/server.svg" alt="server" aria-hidden="true" />
 				</div>
-				<div class="node-label">Lorem ipsum</div>
+				<h4 class="node-label">Lorem ipsum</h4>
 				<ng-container>
 					@if (hoveredMiddleNode === '2') {
 						<app-asset-card [assetData]="middleNodeAssets['2']"></app-asset-card>
 					}
 				</ng-container>
-			</div>
-			<img src="icons/arrow.svg" alt="arrow" />
-			<div
+			</article>
+			<img src="icons/arrow.svg" alt="arrow" aria-hidden="true" />
+			<article
 				class="flow-node middle-node"
 				(mouseenter)="hoveredMiddleNode = '3'"
 				(mouseleave)="hoveredMiddleNode = null"
+				role="button"
+				tabindex="0"
+				aria-label="Middle node 3: Lorem ipsum"
+				(click)="hoveredMiddleNode = hoveredMiddleNode === '3' ? null : '3'"
+				(keydown.enter)="hoveredMiddleNode = hoveredMiddleNode === '3' ? null : '3'"
+				(keydown.space)="
+					hoveredMiddleNode = hoveredMiddleNode === '3' ? null : '3'; $event.preventDefault()
+				"
 			>
 				<div class="node-icon-container">
-					<img src="icons/server.svg" alt="server" />
+					<img src="icons/server.svg" alt="server" aria-hidden="true" />
 				</div>
-				<div class="node-label">Lorem ipsum</div>
+				<h4 class="node-label">Lorem ipsum</h4>
 				@if (hoveredMiddleNode === '3') {
 					<app-asset-card [assetData]="middleNodeAssets['3']"></app-asset-card>
 				}
-			</div>
-			<img src="icons/branch.svg" alt="branch" />
+			</article>
+			<img src="icons/branch.svg" alt="branch" aria-hidden="true" />
 			<div class="last-node">
-				<div
+				<article
 					class="flow-node end-node"
 					(mouseenter)="hoveredEndNode = '4'"
 					(mouseleave)="hoveredEndNode = null"
+					role="button"
+					tabindex="0"
+					aria-label="End node 4: Lorem ipsum at 192.168.1.1"
+					(click)="hoveredEndNode = hoveredEndNode === '4' ? null : '4'"
+					(keydown.enter)="hoveredEndNode = hoveredEndNode === '4' ? null : '4'"
+					(keydown.space)="
+						hoveredEndNode = hoveredEndNode === '4' ? null : '4'; $event.preventDefault()
+					"
 				>
 					<div class="node-icon-container">
-						<img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
-						<img src="icons/server.svg" alt="server" />
+						<img
+							src="icons/error-shield.svg"
+							alt="error-shield"
+							class="status-overlay"
+							aria-hidden="true"
+						/>
+						<img src="icons/server.svg" alt="server" aria-hidden="true" />
 					</div>
-					<div class="node-label">Lorem ipsum</div>
-					<div class="node-ip">192.168.1.1</div>
+					<h4 class="node-label">Lorem ipsum</h4>
+					<address class="node-ip">192.168.1.1</address>
 					@if (hoveredEndNode === '4') {
 						<app-end-node-card [cardData]="endNodeAssets['4']"></app-end-node-card>
 					}
-				</div>
-				<div
+				</article>
+				<article
 					class="flow-node end-node"
 					(mouseenter)="hoveredEndNode = '5'"
 					(mouseleave)="hoveredEndNode = null"
+					role="button"
+					tabindex="0"
+					aria-label="End node 5: Lorem ipsum at 192.168.1.1"
+					(click)="hoveredEndNode = hoveredEndNode === '5' ? null : '5'"
+					(keydown.enter)="hoveredEndNode = hoveredEndNode === '5' ? null : '5'"
+					(keydown.space)="
+						hoveredEndNode = hoveredEndNode === '5' ? null : '5'; $event.preventDefault()
+					"
 				>
 					<div class="node-icon-container">
-						<img src="icons/error-shield.svg" alt="error-shield" class="status-overlay" />
-						<img src="icons/server.svg" alt="server" />
+						<img
+							src="icons/error-shield.svg"
+							alt="error-shield"
+							class="status-overlay"
+							aria-hidden="true"
+						/>
+						<img src="icons/server.svg" alt="server" aria-hidden="true" />
 					</div>
-					<div class="node-label">Lorem ipsum</div>
-					<div class="node-ip">192.168.1.1</div>
+					<h4 class="node-label">Lorem ipsum</h4>
+					<address class="node-ip">192.168.1.1</address>
 					@if (hoveredEndNode === '5') {
 						<app-end-node-card [cardData]="endNodeAssets['5']"></app-end-node-card>
 					}
-				</div>
+				</article>
 			</div>
 		</div>
 
-		<div class="risk-legend">
+		<aside class="risk-legend" aria-label="Risk level legend">
 			@for (item of riskLegend; track item.status) {
 				<div class="legend-item">
-					<img [src]="'icons/' + item.icon" alt="" />
-					<span class="legend-label" [ngClass]="item.status.toLowerCase()">{{ item.label }}</span>
+					<img [src]="'icons/' + item.icon" alt="" aria-hidden="true" />
+					<span class="legend-label" [ngClass]="item.status.toLowerCase()" role="status">{{
+						item.label
+					}}</span>
 				</div>
 			}
-		</div>
-	</div>
+		</aside>
+	</section>
 </app-card>

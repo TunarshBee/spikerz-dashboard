@@ -58,11 +58,9 @@ describe('ContextualRiskChartComponent', () => {
 	});
 
 	it('should calculate segments correctly based on assets data', () => {
-		// Set mock assets data by creating a new component instance
 		const testFixture = TestBed.createComponent(ContextualRiskChartComponent);
 		const testComponent = testFixture.componentInstance;
 
-		// Manually set the input signal value for testing
 		(testComponent as any).assets = () => mockAssets;
 
 		testComponent.ngOnInit();
@@ -76,11 +74,9 @@ describe('ContextualRiskChartComponent', () => {
 	});
 
 	it('should return correct risk statistics from assets data', () => {
-		// Set mock assets data by creating a new component instance
 		const testFixture = TestBed.createComponent(ContextualRiskChartComponent);
 		const testComponent = testFixture.componentInstance;
 
-		// Manually set the input signal value for testing
 		(testComponent as any).assets = () => mockAssets;
 
 		const riskStats = testComponent.riskStats;
@@ -101,11 +97,10 @@ describe('ContextualRiskChartComponent', () => {
 	});
 
 	it('should handle empty assets array', () => {
-		// Set empty assets data by creating a new component instance
 		const testFixture = TestBed.createComponent(ContextualRiskChartComponent);
 		const testComponent = testFixture.componentInstance;
 
-		// Manually set the input signal value for testing
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(testComponent as any).assets = () => [];
 
 		testComponent.ngOnInit();

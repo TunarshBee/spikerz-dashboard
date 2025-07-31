@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Asset } from '../../../core/types';
 import { APP_CONSTANTS } from '../../../core/constants/app.constants';
@@ -34,5 +34,37 @@ export class ContextualRiskTableComponent {
 
 	onPageChange(page: number): void {
 		this.pageChange.emit(page);
+	}
+
+	@HostListener('keydown', ['$event'])
+	onKeyDown(event: KeyboardEvent): void {
+		const target = event.target as HTMLElement;
+
+		// Handle pagination keyboard navigation
+		if (target.closest('.pagination')) {
+			const buttons = target
+				.closest('.pagination')
+				?.querySelectorAll('button') as NodeListOf<HTMLElement>;
+			const currentButton = target.closest('button') as HTMLElement;
+
+			if (!buttons || !currentButton) return;
+
+			const currentIndex = Array.from(buttons).findIndex((btn) => btn === currentButton);
+
+			switch (event.key) {
+				case 'ArrowLeft':
+					event.preventDefault();
+					if (currentIndex > 0) {
+						buttons[currentIndex - 1]?.focus();
+					}
+					break;
+				case 'ArrowRight':
+					event.preventDefault();
+					if (currentIndex < buttons.length - 1) {
+						buttons[currentIndex + 1]?.focus();
+					}
+					break;
+			}
+		}
 	}
 }

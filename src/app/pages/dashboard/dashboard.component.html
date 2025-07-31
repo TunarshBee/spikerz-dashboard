@@ -1,7 +1,14 @@
-<div class="dashboard-container">
-	<button class="mobile-menu-toggle" (click)="onToggleSidebar()" *ngIf="isMobile">
-		<i class="fas fa-bars" *ngIf="sidebarCollapsed"></i>
-		<i class="fas fa-times" *ngIf="!sidebarCollapsed"></i>
+<div class="dashboard-container" role="application" aria-label="Security Dashboard">
+	<button
+		class="mobile-menu-toggle"
+		(click)="onToggleSidebar()"
+		*ngIf="isMobile"
+		[attr.aria-label]="sidebarCollapsed ? 'Open navigation menu' : 'Close navigation menu'"
+		[attr.aria-expanded]="!sidebarCollapsed"
+		[attr.aria-controls]="'sidebar-navigation'"
+	>
+		<i class="fas fa-bars" *ngIf="sidebarCollapsed" aria-hidden="true"></i>
+		<i class="fas fa-times" *ngIf="!sidebarCollapsed" aria-hidden="true"></i>
 	</button>
 
 	<app-sidebar
@@ -14,9 +21,10 @@
 	>
 	</app-sidebar>
 
-	<main class="main-content">
+	<main class="main-content" role="main" aria-labelledby="dashboard-heading">
 		<div class="content-wrapper">
-			<div class="left-column">
+			<section class="left-column" aria-labelledby="details-heading">
+				<h2 id="details-heading" class="visually-hidden">Vulnerability Details</h2>
 				<app-card title="Description">
 					<p class="section-content">{{ currentCVE.description }}</p>
 				</app-card>
@@ -25,43 +33,43 @@
 					<p class="section-content">{{ currentCVE.extra }}</p>
 				</app-card>
 
-				<div>
-					<div class="details-table">
+				<section>
+					<dl class="details-table">
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">10/19/2017</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value">10/19/2017</dd>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Ut</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value">Ut</dd>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Eros</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value">Eros</dd>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value"><i class="fas fa-check"></i> Yes</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value"><i class="fas fa-check"></i> Yes</dd>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Sit</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value">Sit</dd>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Lorem Ipsum Dolor</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value">Lorem Ipsum Dolor</dd>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Lorem Ipsum Dolor</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value">Lorem Ipsum Dolor</dd>
 						</div>
 						<div class="detail-row">
-							<h3 class="detail-label">Lorem Ipsum Dolor</h3>
-							<p class="detail-value">Lorem Ipsum Dolor</p>
+							<dt class="detail-label">Lorem Ipsum Dolor</dt>
+							<dd class="detail-value">Lorem Ipsum Dolor</dd>
 						</div>
-					</div>
+					</dl>
 
-					<div class="additional-content-container">
+					<section class="additional-content-container">
 						<h3 class="additional-content-heading">Lorem Ipsum Dolor Sit</h3>
 						<div class="remediation-container">
 							@for (remediation of getRemediationEntries(); track remediation.key) {
@@ -73,11 +81,12 @@
 								</app-remediation>
 							}
 						</div>
-					</div>
-				</div>
-			</div>
+					</section>
+				</section>
+			</section>
 
-			<div class="right-column">
+			<section class="right-column" aria-labelledby="analytics-heading">
+				<h2 id="analytics-heading" class="visually-hidden">Security Analytics</h2>
 				<app-asset-flow></app-asset-flow>
 
 				<app-card title="Lorem ipsum dolor sit">
@@ -91,7 +100,7 @@
 						<app-contextual-risk-chart [assets]="assets"></app-contextual-risk-chart>
 					</div>
 				</app-card>
-			</div>
+			</section>
 		</div>
 	</main>
 </div>
