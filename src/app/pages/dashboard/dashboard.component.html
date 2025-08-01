@@ -72,11 +72,11 @@
 					<section class="additional-content-container">
 						<h3 class="additional-content-heading">Lorem Ipsum Dolor Sit</h3>
 						<div class="remediation-container">
-							@for (remediation of getRemediationEntries(); track remediation.key) {
+							@for (remediation of remediations; track remediation.name) {
 								<app-remediation
-									[remediation]="remediation.value"
-									[title]="'Lorem ' + remediation.key"
-									[heading]="'Server ' + remediation.key"
+									[remediation]="remediation.text"
+									[title]="'Lorem ' + remediation.name"
+									[heading]="remediation.title"
 								>
 								</app-remediation>
 							}

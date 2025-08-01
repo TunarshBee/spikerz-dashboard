@@ -70,9 +70,19 @@ export class ContextualRiskChartComponent implements OnInit {
 			{ value: riskSummary.low, class: RISK_COLORS.LOW },
 		];
 
-		for (const part of parts) {
-			const percent =
-				this.total === 0 ? 0 : (part.value / this.total) * APP_CONSTANTS.CHART.VIEW_BOX_SIZE;
+		// Filter out parts with zero values
+		const nonZeroParts = parts.filter((part) => part.value > 0);
+
+		if (nonZeroParts.length === 0) {
+			// If no data, show empty circle
+			return;
+		}
+
+		// Calculate total of non-zero values
+		const totalNonZero = nonZeroParts.reduce((sum, part) => sum + part.value, 0);
+
+		for (const part of nonZeroParts) {
+			const percent = (part.value / totalNonZero) * 100;
 			this.segments.push({
 				percent,
 				offset,

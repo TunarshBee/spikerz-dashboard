@@ -14,8 +14,6 @@
 
 		<div class="chart">
 			<svg [attr.viewBox]="'0 0 ' + chartViewBoxSize + ' ' + chartViewBoxSize" class="donut">
-				<circle class="bg" [attr.cx]="chartCenter" [attr.cy]="chartCenter" [attr.r]="chartRadius" />
-
 				<g [attr.transform]="'rotate(-90 ' + chartCenter + ' ' + chartCenter + ')'">
 					@for (segment of segments; track segment.colorClass) {
 						<circle

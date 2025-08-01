@@ -48,22 +48,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		{ id: 'filters', icon: 'filters', label: 'Lorem', active: false },
 	];
 
-	remediations = {
-		A: 'Lorem ipsum dolor sit amet consectetur. In laoreet elementum luctus odio. Id enim urna.',
-		B: 'Lorem ipsum dolor sit amet consectetur. Quis viverra etiam pellentesque lectus semper in massa purus. Auctor aenean aenean senectus massa dignissim vehicula mi erat purus. Praesent scelerisque aliquet metus sagittis dictum sed sed. Sed venenatis sed urna quam.',
-		C: 'Lorem ipsum dolor sit amet consectetur. Nunc vitae tortor convallis vitae arcu. Magna.',
-	};
-
-	getRemediationEntries(): Array<{ key: string; value: string }> {
-		return Object.entries(this.remediations).map(([key, value]) => ({
-			key,
-			value,
-		}));
-	}
+	remediations = [
+		{
+			name: 'P',
+			title: 'Lorem ipsum dolor sit amet consectetur.',
+			text: 'Lorem ipsum dolor sit amet consectetur. In laoreet elementum luctus odio. Id enim urna.',
+		},
+		{
+			name: 'S',
+			title: 'Lorem ipsum dolor sit amet consectetur.',
+			text: 'Lorem ipsum dolor sit amet consectetur. Quis viverra etiam pellentesque lectus semper in massa purus. Auctor aenean aenean senectus massa dignissim vehicula mi erat purus. Praesent scelerisque aliquet metus sagittis dictum sed sed. Sed venenatis sed urna quam.',
+		},
+		{
+			name: 'T',
+			title: 'Lorem ipsum dolor sit amet consectetur.',
+			text: 'Lorem ipsum dolor sit amet consectetur. Nunc vitae tortor convallis vitae arcu. Magna.',
+		},
+	];
 
 	userProfile: UserProfile = {
-		name: 'John Doe',
-		email: 'john.doe@company.com',
+		name: 'Lorem',
+		email: 'lorem',
 		avatar: '👤',
 	};
 

@@ -47,11 +47,10 @@
 	.additional-content-details {
 		display: flex;
 		flex-direction: column;
-		width: 271px;
+
 		.additional-content-detail {
 			display: flex;
 			align-items: center;
-			max-width: 352px;
 			border-radius: 8px;
 			padding: 6px 16px;
 			gap: 16px;

@@ -12,8 +12,8 @@ describe('SidebarComponent', () => {
 	];
 
 	const mockUserProfile: UserProfile = {
-		name: 'John Doe',
-		email: 'john.doe@company.com',
+		name: 'Lorem',
+		email: 'lorem',
 		avatar: '👤',
 	};
 
