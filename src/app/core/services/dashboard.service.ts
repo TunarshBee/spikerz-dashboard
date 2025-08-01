@@ -16,6 +16,10 @@ import {
 	ASSET_CARD_STATUS,
 	HIGHLIGHT_COLORS,
 } from '../constants/risk.constants';
+import { SecurityService } from './security.service';
+import { HttpClient } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
+import { IAssetFlowData, IVulnerabilityData } from '../types/dashboard.types';
 
 @Injectable({
 	providedIn: 'root',
@@ -338,7 +342,10 @@ export class DashboardService {
 		},
 	];
 
-	constructor() {}
+	constructor(
+		private securityService: SecurityService,
+		private http: HttpClient,
+	) {}
 
 	getCurrentCVE(): CVE {
 		return this.currentCVE;
@@ -384,5 +391,66 @@ export class DashboardService {
 			observer.next(this.assetCardsData);
 			observer.complete();
 		});
+	}
+
+	/**
+	 * Validate and sanitize user input before processing
+	 */
+	validateUserInput(
+		input: string,
+		type: 'text' | 'email' | 'ip' | 'number' | 'alphanumeric' = 'text',
+	): unknown {
+		const validation = this.securityService.validateInput(input, type);
+
+		if (!validation.isValid) {
+			this.securityService.logSecurityEvent('Invalid user input detected', {
+				input: input.substring(0, 100), // Log first 100 chars only
+				type,
+				errors: validation.errors,
+			});
+			throw new Error(`Invalid input: ${validation.errors.join(', ')}`);
+		}
+
+		return validation.sanitizedValue;
+	}
+
+	/**
+	 * Validate and sanitize object data
+	 */
+	validateObjectData(obj: Record<string, unknown>): unknown {
+		const validation = this.securityService.validateObject(obj);
+
+		if (!validation.isValid) {
+			this.securityService.logSecurityEvent('Invalid object data detected', {
+				errors: validation.errors,
+			});
+			throw new Error(`Invalid object data: ${validation.errors.join(', ')}`);
+		}
+
+		return validation.sanitizedValue;
+	}
+
+	/**
+	 * Get asset flow data
+	 */
+	getAssetFlowData(): Observable<IAssetFlowData> {
+		return this.http.get<IAssetFlowData>('/api/asset-flow').pipe(
+			catchError((error: unknown) => {
+				console.error('Error fetching asset flow data:', error);
+				return throwError(() => new Error('Failed to fetch asset flow data'));
+			}),
+		);
+	}
+
+	/**
+	 * Get vulnerability data
+	 */
+	getVulnerabilityData(): Observable<IVulnerabilityData[]> {
+		return this.http.get<IVulnerabilityData[]>('/api/vulnerabilities').pipe(
+			catchError((error: unknown) => {
+				console.error('Error fetching vulnerability data:', error);
+				return throwError(() => new Error('Failed to fetch vulnerability data'));
+			}),
+		);
 	}
 }
