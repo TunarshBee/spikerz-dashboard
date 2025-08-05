@@ -74,7 +74,14 @@ export class ContextualRiskChartComponent implements OnInit {
 		const nonZeroParts = parts.filter((part) => part.value > 0);
 
 		if (nonZeroParts.length === 0) {
-			// If no data, show empty circle
+			// If no data, create segments with 0% values
+			for (const part of parts) {
+				this.segments.push({
+					percent: 0,
+					offset: 0,
+					colorClass: part.class,
+				});
+			}
 			return;
 		}
 
