@@ -21,6 +21,7 @@ import { AssetFlowComponent } from './asset-flow/asset-flow.component';
 import { ContextualRiskTableComponent } from './contextual-risk-table/contextual-risk-table.component';
 import { ContextualRiskChartComponent } from './contextual-risk-chart/contextual-risk-chart.component';
 import { APP_CONSTANTS } from '../../core/constants/app.constants';
+import { DASHBOARD_CONSTANTS } from '../../core/constants/dashboard.constants';
 
 @Component({
 	selector: 'app-dashboard',
@@ -38,41 +39,10 @@ import { APP_CONSTANTS } from '../../core/constants/app.constants';
 	styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-	sidebarItems: SidebarItem[] = [
-		{ id: 'dashboard', icon: 'dashboard', label: 'Lorem', active: false },
-		{ id: 'vulnerabilities', icon: 'vulnerabilities', label: 'Lorem', active: true },
-		{ id: 'assets', icon: 'assets', label: 'Lorem', active: false },
-		{ id: 'reports', icon: 'reports', label: 'Lorem', active: false },
-		{ id: 'plug', icon: 'plug', label: 'Lorem', active: false },
-		{ id: 'docs', icon: 'documentation', label: 'Lorem', active: false },
-		{ id: 'filters', icon: 'filters', label: 'Lorem', active: false },
-	];
-
-	remediations = [
-		{
-			name: 'P',
-			title: 'Lorem ipsum dolor sit amet consectetur.',
-			text: 'Lorem ipsum dolor sit amet consectetur. In laoreet elementum luctus odio. Id enim urna.',
-		},
-		{
-			name: 'S',
-			title: 'Lorem ipsum dolor sit amet consectetur.',
-			text: 'Lorem ipsum dolor sit amet consectetur. Quis viverra etiam pellentesque lectus semper in massa purus. Auctor aenean aenean senectus massa dignissim vehicula mi erat purus. Praesent scelerisque aliquet metus sagittis dictum sed sed. Sed venenatis sed urna quam.',
-		},
-		{
-			name: 'T',
-			title: 'Lorem ipsum dolor sit amet consectetur.',
-			text: 'Lorem ipsum dolor sit amet consectetur. Nunc vitae tortor convallis vitae arcu. Magna.',
-		},
-	];
-
-	userProfile: UserProfile = {
-		name: 'Lorem',
-		email: 'lorem',
-		avatar: '👤',
-	};
-
-	currentCVE!: CVE;
+	sidebarItems: SidebarItem[] = DASHBOARD_CONSTANTS.SIDEBAR_ITEMS;
+	remediations = DASHBOARD_CONSTANTS.REMEDIATIONS;
+	userProfile: UserProfile = DASHBOARD_CONSTANTS.USER_PROFILE;
+	currentCVE: CVE = DASHBOARD_CONSTANTS.CURRENT_CVE;
 
 	assets: Asset[] = [];
 	riskSummary: RiskSummary = { critical: 0, high: 0, medium: 0, low: 0, total: 0 };
@@ -107,8 +77,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	}
 
 	private loadData(): void {
-		this.currentCVE = this.dashboardService.getCurrentCVE();
-
 		this.subscriptions.add(
 			this.dashboardService.getAssets().subscribe((data: Asset[]) => {
 				this.assets = data;
