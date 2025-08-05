@@ -36,7 +36,6 @@ export class ContextualRiskChartComponent implements OnInit {
 			total: assets.length,
 		};
 
-		// Count assets by risk level
 		assets.forEach((asset) => {
 			const riskLevel = asset.riskLevel.toLowerCase();
 			switch (riskLevel) {
@@ -70,11 +69,9 @@ export class ContextualRiskChartComponent implements OnInit {
 			{ value: riskSummary.low, class: RISK_COLORS.LOW },
 		];
 
-		// Filter out parts with zero values
 		const nonZeroParts = parts.filter((part) => part.value > 0);
 
 		if (nonZeroParts.length === 0) {
-			// If no data, create segments with 0% values
 			for (const part of parts) {
 				this.segments.push({
 					percent: 0,
@@ -85,7 +82,6 @@ export class ContextualRiskChartComponent implements OnInit {
 			return;
 		}
 
-		// Calculate total of non-zero values
 		const totalNonZero = nonZeroParts.reduce((sum, part) => sum + part.value, 0);
 
 		for (const part of nonZeroParts) {
@@ -109,7 +105,6 @@ export class ContextualRiskChartComponent implements OnInit {
 			total: assets.length,
 		};
 
-		// Count assets by risk level
 		assets.forEach((asset) => {
 			const riskLevel = asset.riskLevel.toLowerCase();
 			switch (riskLevel) {

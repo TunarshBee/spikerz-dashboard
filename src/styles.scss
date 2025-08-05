@@ -129,7 +129,6 @@ p {
 	}
 }
 
-/* Accessibility utilities */
 .visually-hidden {
 	position: absolute !important;
 	width: 1px !important;
@@ -142,13 +141,11 @@ p {
 	border: 0 !important;
 }
 
-/* Focus styles for keyboard navigation */
 *:focus {
 	outline: 2px solid var(--blue-500);
 	outline-offset: 2px;
 }
 
-/* Skip link for keyboard users */
 .skip-link {
 	position: absolute;
 	top: -40px;

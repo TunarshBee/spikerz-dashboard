@@ -5,15 +5,7 @@ import { Subscription } from 'rxjs';
 import { SidebarComponent } from '../../shared/components/sidebar/sidebar.component';
 import { CardComponent } from '../../shared/components/ui/card/card.component';
 
-import {
-	Asset,
-	Vulnerability,
-	RiskSummary,
-	AssetCard,
-	CVE,
-	SidebarItem,
-	UserProfile,
-} from '../../core/types';
+import { Asset, CVE, SidebarItem, UserProfile } from '../../core/types';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { LayoutService } from '../../core/services/layout.service';
 import { RemediationComponent } from '../../shared/components/ui/remediation/remediation.component';
@@ -45,18 +37,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	currentCVE: CVE = DASHBOARD_CONSTANTS.CURRENT_CVE;
 
 	assets: Asset[] = [];
-	riskSummary: RiskSummary = { critical: 0, high: 0, medium: 0, low: 0, total: 0 };
-	vulnerabilities: Vulnerability[] = [];
-	assetCards: AssetCard[] = [];
 
 	currentPage: number = APP_CONSTANTS.PAGINATION.DEFAULT_CURRENT_PAGE;
 	pageSize: number = APP_CONSTANTS.PAGINATION.DEFAULT_PAGE_SIZE;
-	paginatedAssets: Asset[] = [];
 
 	sidebarCollapsed = false;
 	isMobile = false;
-	showVulnerabilityDrawer = false;
-	selectedAsset: Asset | null = null;
 
 	private subscriptions = new Subscription();
 
@@ -80,25 +66,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.subscriptions.add(
 			this.dashboardService.getAssets().subscribe((data: Asset[]) => {
 				this.assets = data;
-				this.updatePaginatedAssets();
-			}),
-		);
-
-		this.subscriptions.add(
-			this.dashboardService.getRiskSummary().subscribe((data) => {
-				this.riskSummary = data;
-			}),
-		);
-
-		this.subscriptions.add(
-			this.dashboardService.getVulnerabilities().subscribe((data) => {
-				this.vulnerabilities = data;
-			}),
-		);
-
-		this.subscriptions.add(
-			this.dashboardService.getAssetCards().subscribe((data) => {
-				this.assetCards = data;
 			}),
 		);
 	}
@@ -127,24 +94,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this.layoutService.toggleSidebar();
 	}
 
-	openVulnerabilityDrawer(asset: Asset): void {
-		this.selectedAsset = asset;
-		this.showVulnerabilityDrawer = true;
-	}
-
-	closeVulnerabilityDrawer(): void {
-		this.showVulnerabilityDrawer = false;
-		this.selectedAsset = null;
-	}
-
-	updatePaginatedAssets(): void {
-		const startIndex = (this.currentPage - 1) * this.pageSize;
-		const endIndex = startIndex + this.pageSize;
-		this.paginatedAssets = this.assets.slice(startIndex, endIndex);
-	}
-
 	onPageChange(page: number): void {
 		this.currentPage = page;
-		this.updatePaginatedAssets();
 	}
 }

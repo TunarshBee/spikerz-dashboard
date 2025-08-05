@@ -44,7 +44,9 @@
 					/>
 					<span class="nav-label" *ngIf="!collapsed">{{ item.label }}</span>
 					@if (collapsed) {
-						<div class="nav-tooltip" role="tooltip" aria-hidden="true">{{ item.label }}</div>
+						<div class="nav-tooltip" role="tooltip" aria-hidden="true">
+							{{ item.label }}
+						</div>
 					}
 				</button>
 			</li>

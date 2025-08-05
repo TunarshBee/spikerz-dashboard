@@ -40,7 +40,6 @@ export class ContextualRiskTableComponent {
 	onKeyDown(event: KeyboardEvent): void {
 		const target = event.target as HTMLElement;
 
-		// Handle pagination keyboard navigation
 		if (target.closest('.pagination')) {
 			const buttons = target
 				.closest('.pagination')

@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { LayoutService } from '../../core/services/layout.service';
-import { Asset, RiskSummary, CVE } from '../../core/types';
+import { Asset, CVE } from '../../core/types';
 import { RISK_LEVELS, ASSET_STATUS } from '../../core/constants/risk.constants';
 
 describe('DashboardComponent', () => {
@@ -29,22 +29,8 @@ describe('DashboardComponent', () => {
 		},
 	];
 
-	const mockRiskSummary: RiskSummary = {
-		critical: 2,
-		high: 3,
-		medium: 1,
-		low: 0,
-		total: 6,
-	};
-
 	beforeEach(async () => {
-		mockDashboardService = jasmine.createSpyObj('DashboardService', [
-			'getCurrentCVE',
-			'getAssets',
-			'getRiskSummary',
-			'getVulnerabilities',
-			'getAssetCards',
-		]);
+		mockDashboardService = jasmine.createSpyObj('DashboardService', ['getAssets']);
 
 		mockLayoutService = jasmine.createSpyObj('LayoutService', [
 			'getIsMobileValue',
@@ -54,11 +40,7 @@ describe('DashboardComponent', () => {
 			'toggleSidebar',
 		]);
 
-		mockDashboardService.getCurrentCVE.and.returnValue(mockCVE);
 		mockDashboardService.getAssets.and.returnValue(of(mockAssets));
-		mockDashboardService.getRiskSummary.and.returnValue(of(mockRiskSummary));
-		mockDashboardService.getVulnerabilities.and.returnValue(of([]));
-		mockDashboardService.getAssetCards.and.returnValue(of([]));
 
 		mockLayoutService.getIsMobileValue.and.returnValue(false);
 		mockLayoutService.getSidebarCollapsedValue.and.returnValue(false);
@@ -90,29 +72,5 @@ describe('DashboardComponent', () => {
 		const updatedActiveItem = component.sidebarItems.find((item) => item.active);
 		expect(updatedActiveItem?.id).toBe(targetItemId);
 		expect(updatedActiveItem?.id).not.toBe(initialActiveItem?.id);
-	});
-
-	it('should toggle vulnerability drawer state', () => {
-		const mockAsset: Asset = {
-			id: '1',
-			name: 'Test Asset',
-			ipAddress: '192.168.1.1',
-			riskLevel: RISK_LEVELS.HIGH,
-			status: ASSET_STATUS.ACTIVE,
-			icon: 'server',
-		};
-
-		expect(component.showVulnerabilityDrawer).toBeFalse();
-		expect(component.selectedAsset).toBeNull();
-
-		component.openVulnerabilityDrawer(mockAsset);
-
-		expect(component.showVulnerabilityDrawer).toBeTrue();
-		expect(component.selectedAsset).toEqual(mockAsset);
-
-		component.closeVulnerabilityDrawer();
-
-		expect(component.showVulnerabilityDrawer).toBeFalse();
-		expect(component.selectedAsset).toBeNull();
 	});
 });
