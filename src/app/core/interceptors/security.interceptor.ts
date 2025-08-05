@@ -3,6 +3,7 @@ import {
 	HttpRequest,
 	HttpHandlerFn,
 	HttpErrorResponse,
+	HttpEvent,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -14,7 +15,7 @@ const csrfToken: string = SecurityUtils.generateCsrfToken();
 export const securityInterceptor: HttpInterceptorFn = (
 	request: HttpRequest<unknown>,
 	next: HttpHandlerFn,
-): Observable<unknown> => {
+): Observable<HttpEvent<unknown>> => {
 	// Validate request URL
 	if (!isValidUrl(request.url)) {
 		return throwError(() => new Error('Invalid request URL'));

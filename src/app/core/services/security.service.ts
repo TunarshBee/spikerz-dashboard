@@ -181,8 +181,8 @@ export class SecurityService {
 					continue;
 				}
 				sanitizedArray.push(validation.sanitizedValue);
-			} else if (item && typeof item === 'object') {
-				const validation = this.validateObject(item);
+			} else if (item && typeof item === 'object' && item !== null) {
+				const validation = this.validateObject(item as Record<string, unknown>);
 				if (!validation.isValid) {
 					errors.push(`Invalid object at index ${i}: ${validation.errors.join(', ')}`);
 					continue;
